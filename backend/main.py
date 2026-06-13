@@ -11,9 +11,9 @@ app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 # Load model and dataset once at startup
-model   = tf.keras.models.load_model('model/keras_model.h5')
-labels  = open('model/labels.txt').read().splitlines()
-dataset = json.load(open('dataset/lahore_fort_dataset.json'))
+model = tf.keras.models.load_model('backend/model/keras_model.h5')
+labels  = open('backend/model/labels.txt').read().splitlines()
+dataset = json.load(open('backend/dataset/lahore_fort_dataset.json', encoding='utf-8'))
 claude  = anthropic.Anthropic(api_key="YOUR_API_KEY_HERE")
 
 def classify(image_path):
