@@ -1,6 +1,9 @@
+import tempfile
+
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import tensorflow as tf
+import tf_keras
 import numpy as np
 from PIL import Image
 import anthropic, json, shutil, os
@@ -11,9 +14,9 @@ app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 # Load model and dataset once at startup
-model = tf.keras.models.load_model('backend/model/keras_model.h5')
-labels  = open('backend/model/labels.txt').read().splitlines()
-dataset = json.load(open('backend/dataset/lahore_fort_dataset.json', encoding='utf-8'))
+model = tf_keras.models.load_model('model/keras_model.h5')
+labels = open('model/labels.txt').read().splitlines()
+dataset = json.load(open('dataset/lahore_fort_dataset.json', encoding='utf-8'))
 claude  = anthropic.Anthropic(api_key="YOUR_API_KEY_HERE")
 
 def classify(image_path):
@@ -27,14 +30,16 @@ def classify(image_path):
 @app.post("/identify")
 async def identify(file: UploadFile):
     # Save uploaded image temporarily
-    tmp = f"/tmp/{file.filename}"
+    import tempfile
+    tmp = os.path.join(tempfile.gettempdir(), file.filename)
     with open(tmp, "wb") as f:
         shutil.copyfileobj(file.file, f)
 
     # Classify
     landmark_id, confidence = classify(tmp)
     os.remove(tmp)
-
+    landmark_id, confidence = classify(tmp)
+    print(f"DEBUG: {landmark_id} = {confidence}")  # add karo
     # If not recognised or low confidence
     if landmark_id == "other" or confidence < 0.75:
         return {"recognised": False, "message": "Landmark not recognised. Try a clearer photo."}
