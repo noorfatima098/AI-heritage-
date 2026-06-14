@@ -14,9 +14,15 @@ app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 # Load model and dataset once at startup
-model = tf_keras.models.load_model('model/keras_model.h5')
-labels = open('model/labels.txt').read().splitlines()
-dataset = json.load(open('dataset/lahore_fort_dataset.json', encoding='utf-8'))
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+
+# Base directory (backend/ folder)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Load model and dataset once at startup
+model = tf_keras.models.load_model(os.path.join(BASE_DIR, 'model', 'keras_model.h5'))
+labels = open(os.path.join(BASE_DIR, 'model', 'labels.txt')).read().splitlines()
+dataset = json.load(open(os.path.join(BASE_DIR, 'dataset', 'lahore_fort_dataset.json'), encoding='utf-8'))
 
 def classify(image_path):
     img  = Image.open(image_path).resize((224, 224)).convert("RGB")
