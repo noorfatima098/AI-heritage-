@@ -2,4 +2,8 @@
 
 # dependencies
 /venv
-requirements.txt
+backend/venv/
+*.pyd
+*.dll
+__pycache__/
+*.pyc

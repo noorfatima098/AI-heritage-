@@ -63,3 +63,4 @@ async def identify(file: UploadFile):
         "narrative":        narrative,
         "reference_images": landmark["reference_images"]
     }
+#uvicorn main:app --reload
