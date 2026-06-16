@@ -149,3 +149,4 @@ const styles = {
   sectionTitle:  { fontWeight: "bold", marginBottom: 12, color: "#1a1a1a" },
   narrative:     { color: "#333", lineHeight: 1.8, fontSize: 15 },
 };
+//npm start
