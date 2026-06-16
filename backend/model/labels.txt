@@ -1,2 +1,7 @@
 0 sheesh-mahal
-1 Class 2
+1 diwan-i-aam
+2 hathi-paer-stairs
+3 maktab-khana
+4 moti-masjid
+5 shah-jahan-quadrangle
+6 other
