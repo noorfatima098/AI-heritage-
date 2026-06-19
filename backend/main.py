@@ -2,13 +2,15 @@ import tempfile
 import shutil
 import os
 import json
-
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import tf_keras
 import numpy as np
 from PIL import Image
+from groq import Groq
+from dotenv import load_dotenv
 
+load_dotenv()
 app = FastAPI()
 
 # Load model and dataset once at startup
@@ -21,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model = tf_keras.models.load_model(os.path.join(BASE_DIR, 'model', 'keras_model.h5'))
 labels = open(os.path.join(BASE_DIR, 'model', 'labels.txt')).read().splitlines()
 dataset = json.load(open(os.path.join(BASE_DIR, 'dataset', 'lahore_fort_dataset.json'), encoding='utf-8'))
-
+groq_client = Groq(api_key=os.getenv("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"))
 def classify(image_path):
     img  = Image.open(image_path).resize((224, 224)).convert("RGB")
     arr  = np.array(img, dtype=np.float32) / 255.0
@@ -47,7 +49,17 @@ async def identify(file: UploadFile):
     if not landmark:
         return {"recognised": False, "message": "Landmark not in dataset yet."}
 
-    narrative = f"{landmark['name']} ({landmark['name_urdu']}) was built by {landmark['built_by']} in {landmark['year_built']} during the {landmark['period']} period. {landmark['description']}"
+    prompt = f"""Write 2 engaging paragraphs about {landmark['name']} ({landmark['name_urdu']}) for a heritage app visitor.
+    Built by: {landmark['built_by']} | Year: {landmark['year_built']} | Period: {landmark['period']}
+    Details: {landmark['description']}
+    Significance: {landmark['significance']}"""
+
+
+    chat_completion = groq_client.chat.completions.create(
+    messages=[{"role": "user", "content": prompt}],
+    model="llama-3.3-70b-versatile",
+)
+    narrative = chat_completion.choices[0].message.content
 
     return {
         "recognised":       True,
@@ -63,4 +75,5 @@ async def identify(file: UploadFile):
         "narrative":        narrative,
         "reference_images": landmark["reference_images"]
     }
-#uvicorn main:app --reload
+#cd "OneDrive\Desktop\python\AI heritage\AI-heritage-\backend"
+# uvicorn main:app --reload
