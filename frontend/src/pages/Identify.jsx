@@ -12,6 +12,8 @@ L.Icon.Default.mergeOptions({
 });
 
 export default function Identify() {
+  const [enhancedUrl, setEnhancedUrl] = useState(null);
+  const [enhancing, setEnhancing] = useState(false);
   const [image, setImage]     = useState(null);
   const [preview, setPreview] = useState(null);
   const [result, setResult]   = useState(null);
@@ -38,6 +40,22 @@ export default function Identify() {
     }
     setLoading(false);
   }
+  async function handleRevive() {
+    if (!image) return;
+    setEnhancing(true);
+      try {
+        const form = new FormData();
+        form.append("file", image);
+        const res = await axios.post("http://localhost:8000/enhance", form, {
+          responseType: "blob"
+        });
+        const url = URL.createObjectURL(res.data);
+        setEnhancedUrl(url);
+    } catch {
+      setError("Enhance fail ho gaya. Backend check karo.");
+    }
+  setEnhancing(false);
+}
 
   return (
     <div style={s.page}>
@@ -92,7 +110,15 @@ export default function Identify() {
                     <h3 style={s.sectionTitle}>📖 Historical Narrative</h3>
                     <p style={s.narrative}>{result.narrative}</p>
                   </div>
-
+                  <div style={s.card}>
+                    <h3 style={s.sectionTitle}>✨ Revive Photo</h3>
+                    <button onClick={handleRevive} disabled={enhancing} style={s.btn}>
+                    {enhancing ? "Reviving..." : "Revive This Photo"}
+                    </button>
+                    {enhancedUrl && (
+                    <img src={enhancedUrl} alt="enhanced" style={{ width: "100%", marginTop: 16, borderRadius: 6 }} />
+                    )}
+                  </div>
                   {result.coordinates && (
                     <div style={s.card}>
                       <h3 style={s.sectionTitle}>📍 Location on Map</h3>
@@ -104,6 +130,7 @@ export default function Identify() {
                       </MapContainer>
                     </div>
                   )}
+                  
                 </>
             }
           </div>
