@@ -8,3 +8,5 @@ backend/venv/
 __pycache__/
 *.pyc
 .env
+frontend/package-lock.json
+backend/__pycache__/
