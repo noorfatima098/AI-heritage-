@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -10,22 +11,15 @@ L.Icon.Default.mergeOptions({
   shadowUrl:     require("leaflet/dist/images/marker-shadow.png"),
 });
 
-const landmarks = [
-  { id:"sheesh-mahal",         name:"Sheesh Mahal",          urdu:"شیش محل",      lat:31.5883, lng:74.3101, period:"Mughal", built:"Shah Jahan" },
-  { id:"alamgiri-gate",        name:"Alamgiri Gate",         urdu:"عالمگیری دروازہ", lat:31.5882, lng:74.3088, period:"Mughal", built:"Aurangzeb" },
-  { id:"picture-wall",         name:"Picture Wall",          urdu:"تصویری دیوار", lat:31.5888, lng:74.3101, period:"Mughal", built:"Jahangir" },
-  { id:"diwan-i-amm",          name:"Diwan-i-Aam",           urdu:"دیوان عام",    lat:31.5879, lng:74.3103, period:"Mughal", built:"Shah Jahan" },
-  { id:"naulakha-pavilion",    name:"Naulakha Pavilion",     urdu:"نولکھا",       lat:31.5886, lng:74.3104, period:"Mughal", built:"Shah Jahan" },
-  { id:"moti-masjid",          name:"Moti Masjid",           urdu:"موتی مسجد",    lat:31.5878, lng:74.3097, period:"Mughal", built:"Shah Jahan" },
-  { id:"hazuri-bagh",          name:"Hazuri Bagh",           urdu:"حضوری باغ",    lat:31.5877, lng:74.3093, period:"Sikh",   built:"Ranjit Singh" },
-  { id:"hathi-paer-stairs",    name:"Hathi Paer",            urdu:"ہاتھی پیر",    lat:31.5881, lng:74.3092, period:"Mughal", built:"Akbar" },
-  { id:"maktab-khana",         name:"Maktab Khana",          urdu:"مکتب خانہ",    lat:31.5887, lng:74.3098, period:"Mughal", built:"Mughal" },
-  { id:"shah-jahan-quadrangle",name:"Shah Jahan Quadrangle", urdu:"شاہ جہاں صحن", lat:31.5882, lng:74.3105, period:"Mughal", built:"Shah Jahan" },
-  { id:"imperial-kitchens",    name:"Imperial Kitchens",     urdu:"شاہی باورچی خانہ", lat:31.5876, lng:74.3098, period:"Mughal", built:"Mughal" },
-];
-
 export default function Explore() {
+  const [landmarks, setLandmarks] = useState([]);
   const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/landmarks")
+      .then(res => setLandmarks(res.data.landmarks))
+      .catch(() => console.log("Backend se landmarks nahi mile"));
+  }, []);
 
   return (
     <div style={s.page}>
@@ -45,8 +39,8 @@ export default function Explore() {
               onClick={() => setSelected(l)}
             >
               <div style={s.sideName}>{l.name}</div>
-              <div style={s.sideUrdu}>{l.urdu}</div>
-              <div style={s.sideMeta}>{l.period} · {l.built}</div>
+              <div style={s.sideUrdu}>{l.name_urdu}</div>
+              <div style={s.sideMeta}>{l.period} · {l.built_by}</div>
             </div>
           ))}
         </div>
@@ -56,11 +50,11 @@ export default function Explore() {
           <MapContainer center={[31.5882, 74.3100]} zoom={16} style={{ height:"100%", width:"100%" }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {landmarks.map(l => (
-              <Marker key={l.id} position={[l.lat, l.lng]} eventHandlers={{ click: () => setSelected(l) }}>
+              <Marker key={l.id} position={[l.coordinates.lat, l.coordinates.lng]} eventHandlers={{ click: () => setSelected(l) }}>
                 <Popup>
                   <strong>{l.name}</strong><br />
-                  {l.urdu}<br />
-                  <span style={{ color:"#7B4F2E", fontSize:12 }}>{l.built} · {l.period}</span>
+                  {l.name_urdu}<br />
+                  <span style={{ color:"#7B4F2E", fontSize:12 }}>{l.built_by} · {l.period}</span>
                 </Popup>
               </Marker>
             ))}
