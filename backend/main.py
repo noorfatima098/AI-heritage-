@@ -61,7 +61,7 @@ async def identify(file: UploadFile):
     if not landmark:
         return {"recognised": False, "message": "Landmark not in dataset yet."}
 
-    prompt = f"""Write 2 engaging paragraphs about {landmark['name']} ({landmark['name_urdu']}) for a heritage app visitor.
+    prompt = f"""Write 1 engaging paragraph about {landmark['name']} ({landmark['name_urdu']}) for a heritage app visitor.
     Built by: {landmark['built_by']} | Year: {landmark['year_built']} | Period: {landmark['period']}
     Details: {landmark['description']}
     Significance: {landmark['significance']}"""
