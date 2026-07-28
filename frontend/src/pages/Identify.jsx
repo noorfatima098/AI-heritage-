@@ -3,6 +3,9 @@ import axios from "axios";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { Camera, Sparkle, MapPin, BookOpen } from "../components/Icon";
+import { SkeletonLine } from "../components/Skeleton";
+import "./Identify.css";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -40,97 +43,113 @@ export default function Identify() {
     }
     setLoading(false);
   }
+
   async function handleRevive() {
     if (!image) return;
     setEnhancing(true);
-      try {
-        const form = new FormData();
-        form.append("file", image);
-        const res = await axios.post("http://localhost:8000/enhance", form, {
-          responseType: "blob"
-        });
-        const url = URL.createObjectURL(res.data);
-        setEnhancedUrl(url);
+    try {
+      const form = new FormData();
+      form.append("file", image);
+      const res = await axios.post("http://localhost:8000/enhance", form, {
+        responseType: "blob"
+      });
+      const url = URL.createObjectURL(res.data);
+      setEnhancedUrl(url);
     } catch {
       setError("Enhance fail ho gaya. Backend check karo.");
     }
-  setEnhancing(false);
-}
+    setEnhancing(false);
+  }
 
   return (
-    <div style={s.page}>
-      <div style={s.header}>
-        <h1 style={s.title}>Identify a Landmark</h1>
-        <p style={s.sub}>Upload a photo taken at Lahore Fort — our AI will recognise the monument and reveal its history.</p>
+    <div className="page identify-page">
+      <div className="page-header">
+        <h1 className="page-title">Identify a Landmark</h1>
+        <p className="page-sub">Upload a photo taken at Lahore Fort — our AI will recognise the monument and reveal its history.</p>
       </div>
 
-      <div style={s.container}>
-        {/* Upload */}
-        <div style={s.card}>
-          <label style={s.uploadBox}>
+      <div className="identify-container">
+        <div className="card identify-upload-card">
+          <label className="identify-upload-box">
             {preview
-              ? <img src={preview} alt="preview" style={s.preview} />
-              : <div style={s.placeholder}>
-                  <div style={s.uploadIcon}>📷</div>
-                  <p style={s.uploadText}>Click to choose a photo</p>
-                  <p style={s.uploadHint}>JPG, PNG supported</p>
+              ? <img src={preview} alt="preview" className="identify-preview" />
+              : <div className="identify-placeholder">
+                  <div className="identify-upload-icon"><Camera size={30} /></div>
+                  <p className="identify-upload-text">Click to choose a photo</p>
+                  <p className="identify-upload-hint">JPG, PNG supported</p>
                 </div>
             }
-            <input type="file" accept="image/*" onChange={handleFile} style={{ display:"none" }} />
+            <input type="file" accept="image/*" onChange={handleFile} style={{ display: "none" }} />
           </label>
-          <button onClick={handleSubmit} disabled={!image || loading} style={!image || loading ? s.btnOff : s.btn}>
-            {loading ? "Identifying..." : "Identify Landmark"}
+          <button
+            onClick={handleSubmit}
+            disabled={!image || loading}
+            className={`btn btn-block ${!image || loading ? "btn-ghost" : "btn-solid"}`}
+          >
+            {loading ? (<><span className="spinner" /> Identifying…</>) : "Identify Landmark"}
           </button>
-          {error && <p style={s.error}>{error}</p>}
+          {error && <p className="identify-error">{error}</p>}
         </div>
 
-        {/* Result */}
+        {loading && !result && (
+          <div className="identify-results">
+            <div className="card identify-card">
+              <SkeletonLine width="55%" height={26} />
+              <div style={{ height: 10 }} />
+              <SkeletonLine width="35%" height={14} />
+              <div style={{ height: 8 }} />
+              <SkeletonLine width="70%" height={14} />
+            </div>
+          </div>
+        )}
+
         {result && (
-          <div style={s.results}>
+          <div className="identify-results">
             {!result.recognised
-              ? <div style={s.notFound}>⚠️ {result.message}</div>
+              ? <div className="identify-notfound">⚠️ {result.message}</div>
               : <>
-                  <div style={s.card}>
-                    <div style={s.topRow}>
-                      <div>
-                        <h2 style={s.name}>{result.name}</h2>
-                        <p style={s.urdu}>{result.name_urdu}</p>
-                        <p style={s.meta}>🏛 {result.built_by} · {result.year_built}</p>
-                        <p style={s.meta}>🕌 {result.period} Period</p>
-                        <p style={s.meta}>⭐ {result.significance}</p>
-                      </div>
-                      <div style={s.badge}>
-                        <span style={s.badgeNum}>{result.confidence}%</span>
-                        <span style={s.badgeLabel}>confidence</span>
-                      </div>
+                  <div className="card identify-card identify-top">
+                    <div>
+                      <h2 className="identify-name">{result.name}</h2>
+                      <p className="identify-urdu">{result.name_urdu}</p>
+                      <p className="identify-meta"><Sparkle size={13} /> {result.built_by} · {result.year_built}</p>
+                      <p className="identify-meta"><BookOpen size={13} /> {result.period} Period</p>
+                      <p className="identify-meta">⭐ {result.significance}</p>
+                    </div>
+                    <div className="identify-badge">
+                      <span className="identify-badge-num">{result.confidence}%</span>
+                      <span className="identify-badge-label">confidence</span>
                     </div>
                   </div>
 
-                  <div style={s.card}>
-                    <h3 style={s.sectionTitle}>📖 Historical Narrative</h3>
-                    <p style={s.narrative}>{result.narrative}</p>
+                  <div className="card identify-card">
+                    <h3 className="identify-section-title"><BookOpen size={16} /> Historical Narrative</h3>
+                    <p className="identify-narrative">{result.narrative}</p>
                   </div>
-                  <div style={s.card}>
-                    <h3 style={s.sectionTitle}>✨ Revive Photo</h3>
-                    <button onClick={handleRevive} disabled={enhancing} style={s.btn}>
-                    {enhancing ? "Reviving..." : "Revive This Photo"}
+
+                  <div className="card identify-card">
+                    <h3 className="identify-section-title"><Sparkle size={16} /> Revive Photo</h3>
+                    <button onClick={handleRevive} disabled={enhancing} className="btn btn-solid">
+                      {enhancing ? (<><span className="spinner" /> Reviving…</>) : "Revive This Photo"}
                     </button>
                     {enhancedUrl && (
-                    <img src={enhancedUrl} alt="enhanced" style={{ width: "100%", marginTop: 16, borderRadius: 6 }} />
+                      <img src={enhancedUrl} alt="enhanced" className="identify-enhanced" />
                     )}
                   </div>
+
                   {result.coordinates && (
-                    <div style={s.card}>
-                      <h3 style={s.sectionTitle}>📍 Location on Map</h3>
-                      <MapContainer center={[result.coordinates.lat, result.coordinates.lng]} zoom={17} style={{ height:280, borderRadius:6 }}>
-                        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                        <Marker position={[result.coordinates.lat, result.coordinates.lng]}>
-                          <Popup>{result.name}</Popup>
-                        </Marker>
-                      </MapContainer>
+                    <div className="card identify-card">
+                      <h3 className="identify-section-title"><MapPin size={16} /> Location on Map</h3>
+                      <div className="identify-map">
+                        <MapContainer center={[result.coordinates.lat, result.coordinates.lng]} zoom={17} style={{ height: "100%" }}>
+                          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                          <Marker position={[result.coordinates.lat, result.coordinates.lng]}>
+                            <Popup>{result.name}</Popup>
+                          </Marker>
+                        </MapContainer>
+                      </div>
                     </div>
                   )}
-                  
                 </>
             }
           </div>
@@ -139,32 +158,3 @@ export default function Identify() {
     </div>
   );
 }
-
-const s = {
-  page:        { minHeight:"100vh", background:"#FAFAF8", fontFamily:"'Inter',sans-serif" },
-  header:      { background:"#3D2314", padding:"48px", textAlign:"center" },
-  title:       { fontFamily:"'Playfair Display',serif", color:"#FAFAF8", fontSize:36, fontWeight:700, marginBottom:12 },
-  sub:         { color:"#C4A882", fontSize:15, fontWeight:300, maxWidth:560, margin:"0 auto" },
-  container:   { maxWidth:800, margin:"0 auto", padding:"32px 24px", display:"flex", flexDirection:"column", gap:20 },
-  card:        { background:"#fff", border:"1px solid #E8E4DC", borderRadius:8, padding:28 },
-  uploadBox:   { display:"block", cursor:"pointer", border:"2px dashed #C4A882", borderRadius:6, overflow:"hidden", marginBottom:16 },
-  placeholder: { padding:"48px 24px", textAlign:"center" },
-  uploadIcon:  { fontSize:40, marginBottom:12 },
-  uploadText:  { color:"#7B4F2E", fontSize:16, fontWeight:500 },
-  uploadHint:  { color:"#8C8580", fontSize:13, marginTop:6 },
-  preview:     { width:"100%", maxHeight:300, objectFit:"cover", display:"block" },
-  btn:         { width:"100%", background:"#7B4F2E", color:"#FAFAF8", border:"none", padding:"14px", borderRadius:6, fontSize:15, fontWeight:500, cursor:"pointer", fontFamily:"'Inter',sans-serif" },
-  btnOff:      { width:"100%", background:"#C4A882", color:"#fff", border:"none", padding:"14px", borderRadius:6, fontSize:15, fontFamily:"'Inter',sans-serif" },
-  error:       { color:"#c0392b", marginTop:12, fontSize:14 },
-  results:     { display:"flex", flexDirection:"column", gap:20 },
-  notFound:    { background:"#fff8f0", border:"1px solid #e8c99a", borderRadius:8, padding:24, color:"#7B4F2E", fontWeight:500 },
-  topRow:      { display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:16 },
-  name:        { fontFamily:"'Playfair Display',serif", fontSize:26, color:"#3D2314", fontWeight:700, marginBottom:4 },
-  urdu:        { fontSize:20, color:"#7B4F2E", marginBottom:12, fontFamily:"serif" },
-  meta:        { color:"#6B6560", fontSize:13, marginBottom:6 },
-  badge:       { background:"#EEEBE4", borderRadius:8, padding:"12px 20px", textAlign:"center", minWidth:90, flexShrink:0 },
-  badgeNum:    { display:"block", fontFamily:"'Playfair Display',serif", fontSize:28, color:"#3D2314", fontWeight:700 },
-  badgeLabel:  { display:"block", fontSize:11, color:"#8C8580", marginTop:2, textTransform:"uppercase", letterSpacing:1 },
-  sectionTitle:{ fontFamily:"'Playfair Display',serif", fontSize:18, color:"#3D2314", marginBottom:14, fontWeight:600 },
-  narrative:   { color:"#4A4747", lineHeight:1.85, fontSize:15 },
-};

@@ -1,42 +1,63 @@
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "./Icon";
+import "./Navbar.css";
+
+const links = [
+  { to: "/explore",  label: "Explore Monuments" },
+  { to: "/map",       label: "Explore Map"       },
+  { to: "/identify",  label: "Identify Landmark" },
+  { to: "/about",     label: "About"             },
+];
 
 export default function Navbar() {
   const { pathname } = useLocation();
+  const [open, setOpen] = useState(false);
 
-  const links = [
-    { to: "/",         label: "Home"     },
-    { to: "/identify", label: "Identify" },
-    { to: "/explore",  label: "Explore"  },
-    { to: "/about",    label: "About"    },
-  ];
+  // Close the mobile menu whenever the route changes
+  useEffect(() => { setOpen(false); }, [pathname]);
 
   return (
-    <nav style={s.nav}>
-      <Link to="/" style={s.brand}>
-        <span style={s.brandMain}>AI Heritage Revive</span>
-        <span style={s.brandSub}>Walled City of Lahore</span>
-      </Link>
-      <div style={s.links}>
+    <>
+      <nav className="navbar">
+        <Link to="/" className="navbar-brand">
+          <span className="navbar-brand-main">AI Heritage Revive</span>
+          <span className="navbar-brand-sub">Walled City of Lahore</span>
+        </Link>
+
+        <div className="navbar-links">
+          {links.map(l => (
+            <Link
+              key={l.to}
+              to={l.to}
+              className={`navbar-link${pathname === l.to ? " active" : ""}`}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </div>
+
+        <button
+          className="navbar-toggle"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen(o => !o)}
+        >
+          {open ? <X /> : <Menu />}
+        </button>
+      </nav>
+
+      <div className={`navbar-mobile${open ? " open" : ""}`}>
         {links.map(l => (
           <Link
             key={l.to}
             to={l.to}
-            style={{ ...s.link, ...(pathname === l.to ? s.active : {}) }}
+            className={`navbar-link${pathname === l.to ? " active" : ""}`}
           >
             {l.label}
           </Link>
         ))}
       </div>
-    </nav>
+    </>
   );
 }
-
-const s = {
-  nav:       { display:"flex", justifyContent:"space-between", alignItems:"center", background:"#3D2314", padding:"14px 48px", position:"sticky", top:0, zIndex:100 },
-  brand:     { textDecoration:"none", display:"flex", flexDirection:"column" },
-  brandMain: { fontFamily:"'Playfair Display',serif", color:"#FAFAF8", fontSize:18, fontWeight:700, letterSpacing:.5 },
-  brandSub:  { color:"#C4A882", fontSize:11, letterSpacing:1.5, textTransform:"uppercase", marginTop:2 },
-  links:     { display:"flex", gap:32 },
-  link:      { textDecoration:"none", color:"#C4A882", fontSize:14, fontFamily:"'Inter',sans-serif", letterSpacing:.5, fontWeight:400, paddingBottom:2, borderBottom:"2px solid transparent", transition:"all .2s" },
-  active:    { color:"#FAFAF8", borderBottom:"2px solid #C4A882" },
-};

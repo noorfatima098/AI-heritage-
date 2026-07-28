@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Identify from "./pages/Identify";
 import Explore from "./pages/Explore";
+import Map from "./pages/Map";
+import MonumentDetail from "./pages/MonumentDetail";
 import About from "./pages/About";
 import "./App.css";
 
@@ -14,6 +16,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/identify" element={<Identify />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/map" element={<Map />} />
+        <Route path="/monument/:id" element={<MonumentDetail />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>

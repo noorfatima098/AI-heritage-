@@ -1,0 +1,41 @@
+.about-container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-card { padding: 32px; }
+
+.about-heading {
+  font-family: var(--font-display);
+  font-size: 21px;
+  color: var(--brown-dark);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.about-text { color: var(--grey-dark); line-height: 1.85; font-size: 15px; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.about-tech-item {
+  background: var(--grey-light);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  transition: background var(--fast), transform var(--fast);
+}
+.about-tech-item:hover { background: #e6e0d5; transform: translateY(-2px); }
+
+.about-tech-label { font-size: 11px; color: var(--grey-mid); text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 6px; }
+.about-tech-value { font-size: 14px; color: var(--brown-dark); font-weight: 600; }
+
+@media (max-width: 520px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
