@@ -2,6 +2,9 @@ import tempfile
 import shutil
 import os
 import json
+import chromadb
+import open_clip
+import torch
 from fastapi.responses import FileResponse
 from realesrgan import RealESRGANer
 from basicsr.archs.rrdbnet_arch import RRDBNet
@@ -29,6 +32,31 @@ labels = open(os.path.join(BASE_DIR, 'model', 'labels.txt')).read().splitlines()
 dataset = json.load(open(os.path.join(BASE_DIR, 'dataset', 'lahore_fort_dataset.json'), encoding='utf-8'))
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
+# ChromaDB setup
+chroma_client = chromadb.PersistentClient(path=os.path.join(BASE_DIR, "vectordb"))
+collection = chroma_client.get_or_create_collection("lahore_fort")
+
+# CLIP model for vector search
+clip_model, _, clip_preprocess = open_clip.create_model_and_transforms('ViT-B-32', pretrained='openai')
+clip_model.eval()
+
+def embed_image_clip(image_path):
+    img = clip_preprocess(Image.open(image_path).convert("RGB")).unsqueeze(0)
+    with torch.no_grad():
+        return clip_model.encode_image(img).squeeze().tolist()
+
+def confirm_with_chroma(image_path, cnn_landmark_id, cnn_confidence):
+    if cnn_confidence > 0.85:
+        return cnn_landmark_id  # CNN confident hai
+    # CNN uncertain — ChromaDB se confirm karo
+    query_vec = embed_image_clip(image_path)
+    results = collection.query(query_embeddings=[query_vec], n_results=1)
+    chroma_id = results["metadatas"][0][0]["landmark_id"]
+    # Agar chroma bhi uncertain ho, CNN ka result use karo
+    if chroma_id == "others":
+        return cnn_landmark_id
+    return chroma_id
+
 rrdb = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=4)
 esrgan = RealESRGANer(
     scale=4,
@@ -51,11 +79,28 @@ async def identify(file: UploadFile):
         shutil.copyfileobj(file.file, f)
 
     landmark_id, confidence = classify(tmp)
+    landmark_id = confirm_with_chroma(tmp, landmark_id, confidence)
     os.remove(tmp)
     print(f"DEBUG: {landmark_id} = {confidence}")
 
     if landmark_id == "other" or confidence < 0.75:
         return {"recognised": False, "message": "Landmark not recognised. Try a clearer photo."}
+
+    if confidence < 0.88:
+        return {
+        "recognised": True,
+        "landmark_id": landmark_id,
+        "confidence": round(confidence * 100, 1),
+        "name": "Possibly " + (next((l["name"] for l in dataset["landmarks"] if l["id"] == landmark_id), landmark_id)),
+        "name_urdu": next((l["name_urdu"] for l in dataset["landmarks"] if l["id"] == landmark_id), ""),
+        "built_by": next((l["built_by"] for l in dataset["landmarks"] if l["id"] == landmark_id), ""),
+        "year_built": next((l["year_built"] for l in dataset["landmarks"] if l["id"] == landmark_id), ""),
+        "period": next((l["period"] for l in dataset["landmarks"] if l["id"] == landmark_id), ""),
+        "coordinates": next((l["coordinates"] for l in dataset["landmarks"] if l["id"] == landmark_id), {}),
+        "significance": "Exact monument unclear from this angle — try a closer or more distinctive shot.",
+        "narrative": "This appears to be in the " + (next((l["name"] for l in dataset["landmarks"] if l["id"] == landmark_id), landmark_id)) + " area of Lahore Fort. For a more accurate identification, please try uploading a photo showing a distinctive architectural feature such as tile-work, marble carvings, or a unique structural element.",
+        "reference_images": next((l["reference_images"] for l in dataset["landmarks"] if l["id"] == landmark_id), [])
+    }
 
     landmark = next((l for l in dataset["landmarks"] if l["id"] == landmark_id), None)
     if not landmark:
@@ -104,5 +149,5 @@ async def enhance(file: UploadFile):
 @app.get("/landmarks")
 async def get_landmarks():
     return {"landmarks": dataset["landmarks"]}
-#cd "OneDrive\Desktop\python\AI heritage\AI-heritage-\backend"
+#cd "C:\Users\User\OneDrive\Desktop\python\AI heritage\AI-heritage-\backend"
 # uvicorn main:app --reload
