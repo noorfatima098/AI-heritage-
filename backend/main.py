@@ -17,6 +17,8 @@ from PIL import Image
 from groq import Groq
 from dotenv import load_dotenv
 
+from generate_narrative import generate_narrative  # NEW — RAG narrative pipeline
+
 load_dotenv()
 app = FastAPI()
 
@@ -106,17 +108,29 @@ async def identify(file: UploadFile):
     if not landmark:
         return {"recognised": False, "message": "Landmark not in dataset yet."}
 
-    prompt = f"""Write 1 engaging paragraph about {landmark['name']} ({landmark['name_urdu']}) for a heritage app visitor.
-    Built by: {landmark['built_by']} | Year: {landmark['year_built']} | Period: {landmark['period']}
-    Details: {landmark['description']}
-    Significance: {landmark['significance']}"""
+    # --- NEW: RAG-based narrative (retrieval from the 30-landmark PDF corpus + Groq) ---
+    # Falls back to the old one-line dataset.json prompt if this landmark_id
+    # isn't in the PDF corpus yet (e.g. not ingested, or a genuine gap),
+    # so /identify never breaks even if a landmark is missing from vectordb.
+    try:
+        narrative = generate_narrative(
+            landmark_id,
+            chroma_client=chroma_client,
+            groq_client=groq_client,
+        )
+    except ValueError as e:
+        print(f"DEBUG: RAG narrative unavailable for '{landmark_id}' ({e}); falling back to dataset.json prompt")
+        prompt = f"""Write 1 engaging paragraph about {landmark['name']} ({landmark['name_urdu']}) for a heritage app visitor.
+        Built by: {landmark['built_by']} | Year: {landmark['year_built']} | Period: {landmark['period']}
+        Details: {landmark['description']}
+        Significance: {landmark['significance']}"""
 
-
-    chat_completion = groq_client.chat.completions.create(
-    messages=[{"role": "user", "content": prompt}],
-    model="llama-3.3-70b-versatile",
-)
-    narrative = chat_completion.choices[0].message.content
+        chat_completion = groq_client.chat.completions.create(
+            messages=[{"role": "user", "content": prompt}],
+            model="llama-3.3-70b-versatile",
+        )
+        narrative = chat_completion.choices[0].message.content
+    # --- END NEW ---
 
     return {
         "recognised":       True,
