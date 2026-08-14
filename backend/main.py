@@ -9,7 +9,7 @@ from fastapi.responses import FileResponse
 from realesrgan import RealESRGANer
 from basicsr.archs.rrdbnet_arch import RRDBNet
 import cv2
-from fastapi import FastAPI, UploadFile
+from fastapi import FastAPI, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import tf_keras
 import numpy as np
@@ -22,8 +22,13 @@ from generate_narrative import generate_narrative  # NEW — RAG narrative pipel
 load_dotenv()
 app = FastAPI()
 
-# Load model and dataset once at startup
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+# CORS — defaults to "*" for local dev. For a real deployment, set
+# ALLOWED_ORIGINS in .env to a comma-separated list (e.g.
+# "https://your-frontend.com,http://localhost:3000") so any site can't
+# call this API from a browser.
+_allowed_origins = os.getenv("ALLOWED_ORIGINS", "*")
+_allowed_origins = [o.strip() for o in _allowed_origins.split(",")] if _allowed_origins != "*" else ["*"]
+app.add_middleware(CORSMiddleware, allow_origins=_allowed_origins, allow_methods=["*"], allow_headers=["*"])
 
 # Base directory (backend/ folder)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -38,11 +43,21 @@ groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 chroma_client = chromadb.PersistentClient(path=os.path.join(BASE_DIR, "vectordb"))
 collection = chroma_client.get_or_create_collection("lahore_fort")
 
-# CLIP model for vector search
-clip_model, _, clip_preprocess = open_clip.create_model_and_transforms('ViT-B-32', pretrained='openai')
-clip_model.eval()
+# CLIP model for vector search — lazy-loaded on first use, not at startup,
+# so app boot doesn't pay this cost when a session never hits the CNN's
+# low-confidence fallback path.
+_clip_model = None
+_clip_preprocess = None
+
+def _get_clip():
+    global _clip_model, _clip_preprocess
+    if _clip_model is None:
+        _clip_model, _, _clip_preprocess = open_clip.create_model_and_transforms('ViT-B-32', pretrained='openai')
+        _clip_model.eval()
+    return _clip_model, _clip_preprocess
 
 def embed_image_clip(image_path):
+    clip_model, clip_preprocess = _get_clip()
     img = clip_preprocess(Image.open(image_path).convert("RGB")).unsqueeze(0)
     with torch.no_grad():
         return clip_model.encode_image(img).squeeze().tolist()
@@ -59,13 +74,23 @@ def confirm_with_chroma(image_path, cnn_landmark_id, cnn_confidence):
         return cnn_landmark_id
     return chroma_id
 
-rrdb = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=4)
-esrgan = RealESRGANer(
-    scale=4,
-    model_path=os.path.join(BASE_DIR, "weights", "RealESRGAN_x4plus.pth"),
-    model=rrdb,
-    tile=400
-)
+# Real-ESRGAN — lazy-loaded on first /enhance call, not at startup, since
+# it's a heavy model (weights file + GPU/CPU init) that a session may
+# never touch.
+_esrgan = None
+
+def _get_esrgan():
+    global _esrgan
+    if _esrgan is None:
+        rrdb = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=4)
+        _esrgan = RealESRGANer(
+            scale=4,
+            model_path=os.path.join(BASE_DIR, "weights", "RealESRGAN_x4plus.pth"),
+            model=rrdb,
+            tile=400
+        )
+    return _esrgan
+
 def classify(image_path):
     img  = Image.open(image_path).resize((224, 224)).convert("RGB")
     arr  = np.array(img, dtype=np.float32) / 255.0
@@ -152,14 +177,27 @@ async def enhance(file: UploadFile):
     tmp_in  = os.path.join(tempfile.gettempdir(), "in_" + file.filename)
     tmp_out = os.path.join(tempfile.gettempdir(), "out_" + file.filename)
 
-    with open(tmp_in, "wb") as f:
-        shutil.copyfileobj(file.file, f)
+    try:
+        with open(tmp_in, "wb") as f:
+            shutil.copyfileobj(file.file, f)
 
-    img = cv2.imread(tmp_in, cv2.IMREAD_UNCHANGED)
-    enhanced, _ = esrgan.enhance(img, outscale=4)
-    cv2.imwrite(tmp_out, enhanced)
+        img = cv2.imread(tmp_in, cv2.IMREAD_UNCHANGED)
+        if img is None:
+            # Not a valid/decodable image — corrupt file, wrong format, etc.
+            raise HTTPException(status_code=400, detail="Could not read uploaded file as an image. Try a JPG or PNG.")
 
-    return FileResponse(tmp_out, media_type="image/jpeg")
+        try:
+            enhanced, _ = _get_esrgan().enhance(img, outscale=4)
+        except Exception as e:
+            print(f"DEBUG: ESRGAN enhance failed: {e}")
+            raise HTTPException(status_code=500, detail="Image enhancement failed. Try a smaller or different image.")
+
+        cv2.imwrite(tmp_out, enhanced)
+        return FileResponse(tmp_out, media_type="image/jpeg")
+    finally:
+        # Always clean up temp input, whether we succeeded, failed, or raised.
+        if os.path.exists(tmp_in):
+            os.remove(tmp_in)
 @app.get("/landmarks")
 async def get_landmarks():
     return {"landmarks": dataset["landmarks"]}

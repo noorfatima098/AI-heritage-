@@ -10,3 +10,6 @@ __pycache__/
 .env
 frontend/package-lock.json
 backend/__pycache__/
+
+# stray duplicate — backend/vectordb/ is the one main.py actually uses
+/vectordb/
