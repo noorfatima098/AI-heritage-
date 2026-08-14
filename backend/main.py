@@ -2,6 +2,7 @@ import tempfile
 import shutil
 import os
 import json
+import math
 import chromadb
 import open_clip
 import torch
@@ -9,7 +10,7 @@ from fastapi.responses import FileResponse
 from realesrgan import RealESRGANer
 from basicsr.archs.rrdbnet_arch import RRDBNet
 import cv2
-from fastapi import FastAPI, UploadFile, HTTPException
+from fastapi import FastAPI, UploadFile, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 import tf_keras
 import numpy as np
@@ -91,21 +92,62 @@ def _get_esrgan():
         )
     return _esrgan
 
-def classify(image_path):
+def classify(image_path, top_k=3):
+    """Returns top_k (landmark_id, confidence) tuples, sorted by confidence desc."""
     img  = Image.open(image_path).resize((224, 224)).convert("RGB")
     arr  = np.array(img, dtype=np.float32) / 255.0
     arr  = np.expand_dims(arr, axis=0)
     pred = model.predict(arr)[0]
-    idx  = np.argmax(pred)
-    return labels[idx].split(" ", 1)[-1].lower().replace(" ", "-"), float(pred[idx])
+    top_idx = np.argsort(pred)[::-1][:top_k]
+    return [(labels[i].split(" ", 1)[-1].lower().replace(" ", "-"), float(pred[i])) for i in top_idx]
+
+def haversine_m(lat1, lng1, lat2, lng2):
+    """Distance in meters between two lat/lng points."""
+    R = 6371000
+    p1, p2 = math.radians(lat1), math.radians(lat2)
+    dphi = math.radians(lat2 - lat1)
+    dlmb = math.radians(lng2 - lng1)
+    a = math.sin(dphi / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dlmb / 2) ** 2
+    return 2 * R * math.asin(math.sqrt(a))
+
+def rerank_with_location(top_preds, user_lat, user_lng, decay_m=40):
+    """
+    Re-ranks the CNN's own top-3 shortlist using proximity to the user's
+    GPS location — helps break ties between visually similar (e.g. red
+    sandstone) buildings that are far enough apart to be distinguishable
+    by GPS. Only ever picks among what the CNN already considered
+    plausible; GPS can boost a candidate's score by up to 40%, not
+    override the CNN outright (phone GPS near stone walls can drift
+    15-30m, so it's a nudge, not a verdict).
+    """
+    scored = []
+    for landmark_id, conf in top_preds:
+        landmark = next((l for l in dataset["landmarks"] if l["id"] == landmark_id), None)
+        coords = landmark.get("coordinates") if landmark else None
+        if not coords:
+            scored.append((landmark_id, conf, conf))
+            continue
+        dist = haversine_m(user_lat, user_lng, coords["lat"], coords["lng"])
+        proximity_weight = math.exp(-dist / decay_m)
+        combined = conf * (0.6 + 0.4 * proximity_weight)
+        scored.append((landmark_id, conf, combined))
+    scored.sort(key=lambda x: x[2], reverse=True)
+    best_id, best_cnn_conf, _ = scored[0]
+    return best_id, best_cnn_conf
 
 @app.post("/identify")
-async def identify(file: UploadFile):
+async def identify(file: UploadFile, lat: float = Form(None), lng: float = Form(None)):
     tmp = os.path.join(tempfile.gettempdir(), file.filename)
     with open(tmp, "wb") as f:
         shutil.copyfileobj(file.file, f)
 
-    landmark_id, confidence = classify(tmp)
+    top_preds = classify(tmp)
+    landmark_id, confidence = top_preds[0]
+
+    if lat is not None and lng is not None and confidence < 0.85:
+        # CNN is unsure — use GPS to re-rank within its own top-3 shortlist
+        # before falling back to the CLIP/ChromaDB confirm.
+        landmark_id, confidence = rerank_with_location(top_preds, lat, lng)
     landmark_id = confirm_with_chroma(tmp, landmark_id, confidence)
     os.remove(tmp)
     print(f"DEBUG: {landmark_id} = {confidence}")

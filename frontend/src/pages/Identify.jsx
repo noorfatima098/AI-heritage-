@@ -36,12 +36,32 @@ export default function Identify() {
     try {
       const form = new FormData();
       form.append("file", image);
+
+      // Best-effort GPS capture — if user denies permission or it times
+      // out, we just skip it and identification falls back to CNN-only.
+      const coords = await getLocation();
+      if (coords) {
+        form.append("lat", coords.lat);
+        form.append("lng", coords.lng);
+      }
+
       const res = await axios.post("http://localhost:8000/identify", form);
       setResult(res.data);
     } catch {
       setError("Backend se connection nahi hua. FastAPI chal raha hai?");
     }
     setLoading(false);
+  }
+
+  function getLocation() {
+    return new Promise((resolve) => {
+      if (!navigator.geolocation) return resolve(null);
+      navigator.geolocation.getCurrentPosition(
+        (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+        () => resolve(null),           // denied / unavailable — proceed without it
+        { timeout: 5000, maximumAge: 60000 }
+      );
+    });
   }
 
   async function handleRevive() {
