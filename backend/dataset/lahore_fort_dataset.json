@@ -1,11 +1,11 @@
 {
   "project": "AI Heritage Revive — Walled City of Lahore",
-  "version": "2.0",
-  "phase": "MVP — Lahore Fort",
+  "version": "3.0",
+  "phase": "Lahore Fort — Full Landmark Coverage",
   "sources": [
     "Lahore: A Framework for Urban Conservation (Aga Khan Historic Cities Programme, 2019)",
-    "orientalarchitecture.com/lahore-fort",
-    "Field photography (personal visit)"
+    "Field photography and GPS capture (personal visit)",
+    "On-site guide annotations"
   ],
   "landmarks": [
     {
@@ -21,17 +21,17 @@
       "period": "Mughal",
       "year_built": "c. 1631–1632",
       "coordinates": {
-        "lat": 31.58960555555555,
-        "lng": 74.31339441666668
+        "lat": 31.589957477792083,
+        "lng": 74.31318332623091
       },
       "description": "One of the most celebrated monuments in Lahore Fort, the Sheesh Mahal (Palace of Mirrors) was built by Shah Jahan as part of the Shah Burj complex. Its facade consists of five multi-cusped marble arches supported by coupled columns. The interior walls and ceilings are encrusted with intricate mirror and coloured-glass mosaic work (kund-kari), reflecting candlelight to create a dazzling effect.",
       "significance": "Outstanding — UNESCO World Heritage Site component",
       "status": "Open to visitors",
+      "gps_only": false,
       "reference_images": [
         "sheesh-mahal_(7)_field.JPG",
         "sheesh-mahal_(17)_field.JPG",
-        "sheesh-mahal_(31)_field.JPG",
-        "sheesh-mahal_(38)_field.JPG"
+        "sheesh-mahal_(31)_field.JPG"
       ],
       "tags": [
         "mughal",
@@ -42,415 +42,32 @@
       ]
     },
     {
-      "id": "alamgiri-gate",
-      "name": "Alamgiri Gate",
-      "name_urdu": "عالمگیری دروازہ",
+      "id": "naulakha-pavilion",
+      "name": "Naulakha Pavilion",
+      "name_urdu": "نولکھا",
       "alternate_names": [
-        "Aurangzeb's Gate"
+        "Naulakha"
       ],
-      "quadrangle": "Main Entrance",
-      "built_by": "Aurangzeb",
-      "period": "Mughal",
-      "year_built": "1673",
-      "coordinates": {
-        "lat": 31.588852749999994,
-        "lng": 74.3125388888889
-      },
-      "description": "The main western entrance gate to Lahore Fort, built by Emperor Aurangzeb in 1673. The gate faces the Badshahi Mosque across the Hazuri Bagh. It is a monumental structure flanked by two large semi-circular bastions decorated with white marble and faience tile-work. The gate served as the ceremonial royal entrance during the Mughal period.",
-      "significance": "High — primary Fort entrance, faces Badshahi Mosque",
-      "status": "Open to visitors — main entry point",
-      "reference_images": [
-        "alamgiri-gate_(95)_field.JPG",
-        "alamgiri-gate_(81)_field.JPG",
-        "alamgiri-gate_(64)_field.JPG",
-        "alamgiri-gate_(31)_field.JPG"
-      ],
-      "tags": [
-        "mughal",
-        "aurangzeb",
-        "gate",
-        "entrance",
-        "faience",
-        "bastion"
-      ]
-    },
-    {
-      "id": "akbari-gate",
-      "name": "Akbari Gate",
-      "name_urdu": "اکبری دروازہ",
-      "alternate_names": [
-        "Masjid Gate"
-      ],
-      "quadrangle": "Diwan-i-Amm",
-      "built_by": "Akbar",
-      "period": "Mughal",
-      "year_built": "c. 1566",
-      "coordinates": {
-        "lat": 31.58763611111111,
-        "lng": 74.31651388888889
-      },
-      "description": "The Akbari Gate is the oldest surviving gate of Lahore Fort, built during the reign of Emperor Akbar as part of his early fortification programme. It connects the Diwan-i-Amm quadrangle to the eastern sector of the Fort. The gate reflects Akbar's early architectural style, blending Timurid Central Asian forms with Indian craftsmanship.",
-      "significance": "Medium-High — oldest surviving gate in the Fort",
-      "status": "Open to visitors",
-      "reference_images": [
-        "akbari-gate_(2)_field.JPG",
-        "akbari-gate_(16)_field.JPG",
-        "akbari-gate_(14)_field.JPG"
-      ],
-      "tags": [
-        "mughal",
-        "akbar",
-        "gate",
-        "oldest",
-        "timurid"
-      ]
-    },
-    {
-      "id": "arz-gah",
-      "name": "Arz Gah",
-      "name_urdu": "ارض گاہ",
-      "alternate_names": [
-        "Hall of Petitions",
-        "Petition Hall"
-      ],
-      "quadrangle": "Diwan-i-Amm Quadrangle",
+      "quadrangle": "Shah Burj",
       "built_by": "Shah Jahan",
       "period": "Mughal",
-      "year_built": "c. 17th century",
+      "year_built": "c. 1633",
       "coordinates": {
-        "lat": 31.589838861111097,
-        "lng": 74.31481111111111
+        "lat": 31.5898021142141,
+        "lng": 74.31292985740865
       },
-      "description": "The Arz Gah (Hall of Petitions) was the formal space within Lahore Fort where petitioners and visiting dignitaries presented their cases and gifts to the Mughal emperor. Located adjacent to the Diwan-i-Amm, it served as an antechamber to the main audience hall. The space reflects the highly regulated protocol of the Mughal court, where access to the emperor was carefully managed through a series of formal stages.",
-      "significance": "Medium — important administrative space of the Mughal court",
+      "description": "The Naulakha Pavilion is a small but exquisitely crafted white marble pavilion built by Shah Jahan. Named for its reputed construction cost of nine lakhs of rupees, it features a distinctive curved Bengal-style (bangaldar) roof rarely seen in Lahore Fort. The interior and exterior surfaces are decorated with pietra dura inlay (parchinkari) — coloured stone inlaid in intricate floral and geometric patterns.",
+      "significance": "High — unique bangaldar roof; finest pietra dura work in the Fort",
       "status": "Open to visitors",
-      "reference_images": [
-        "arz-gah_(38)_field.JPG",
-        "arz-gah_(32)_field.JPG",
-        "arz-gah_(26)_field.JPG",
-        "arz-gah_(7)_field.JPG"
-      ],
+      "gps_only": true,
+      "reference_images": [],
       "tags": [
         "mughal",
         "shah-jahan",
-        "administrative",
-        "petition",
-        "court"
-      ]
-    },
-    {
-      "id": "barood-khana",
-      "name": "Barood Khana",
-      "name_urdu": "بارود خانہ",
-      "alternate_names": [
-        "Powder House",
-        "Armoury",
-        "Magazine"
-      ],
-      "quadrangle": "South-Western Area",
-      "built_by": "Mughal (various)",
-      "period": "Mughal",
-      "year_built": "16th–17th century",
-      "coordinates": {
-        "lat": 31.58861666666668,
-        "lng": 74.31325552777777
-      },
-      "description": "The Barood Khana (Gunpowder House) was the imperial armoury and ammunition depot of Lahore Fort, used to store gunpowder, weapons, and military supplies for the garrison. Its thick-walled, vaulted construction was designed to contain accidental explosions and protect the contents from fire. During the Sikh and British periods, it continued to serve military storage functions. It stands as evidence of the Fort's dual role as both a royal residence and a military stronghold.",
-      "significance": "Medium — rare surviving Mughal military-industrial structure",
-      "status": "Open to visitors",
-      "reference_images": [
-        "barood-khana_(13)_field.JPG",
-        "barood-khana_(2)_field.JPG",
-        "barood-khana_(25)_field.JPG",
-        "barood-khana_(49)_field.JPG"
-      ],
-      "tags": [
-        "mughal",
-        "military",
-        "armoury",
-        "vaulted",
-        "gunpowder",
-        "storage"
-      ]
-    },
-    {
-      "id": "diwan-i-amm",
-      "name": "Diwan-i-Amm",
-      "name_urdu": "دیوان عام",
-      "alternate_names": [
-        "Hall of Public Audience"
-      ],
-      "quadrangle": "Diwan-i-Amm Quadrangle",
-      "built_by": "Shah Jahan",
-      "period": "Mughal",
-      "year_built": "c. 1628–1658",
-      "coordinates": {
-        "lat": 31.588219416666668,
-        "lng": 74.31530000000001
-      },
-      "description": "The Diwan-i-Amm (Hall of Public Audience) is where the Mughal emperors held public court sessions to hear petitions from ordinary citizens. The structure is a colonnaded hall facing an open quadrangle, used by Shah Jahan and successive emperors to dispense justice and receive public delegations. A raised marble platform at the rear marks where the imperial throne once stood.",
-      "significance": "High — major Mughal administrative monument",
-      "status": "Open to visitors",
-      "reference_images": [
-        "diwan-i-amm_(3)_field.JPG",
-        "diwan-i-amm_(9)_field.JPG",
-        "diwan-i-amm_(58)_field.JPG",
-        "diwan-i-amm_(54)_field.JPG"
-      ],
-      "tags": [
-        "mughal",
-        "shah-jahan",
-        "audience-hall",
-        "public",
-        "colonnaded"
-      ]
-    },
-    {
-      "id": "doulat-khana",
-      "name": "Doulat Khana",
-      "name_urdu": "دولت خانہ",
-      "alternate_names": [
-        "Daulat Khana",
-        "Treasury",
-        "Jahangiri Quadrangle North"
-      ],
-      "quadrangle": "Jahangir's Quadrangle",
-      "built_by": "Jahangir",
-      "period": "Mughal",
-      "year_built": "c. 1617–1618",
-      "coordinates": {
-        "lat": 31.58726941666668,
-        "lng": 74.31455277777779
-      },
-      "description": "The Doulat Khana (House of Wealth or Treasury) forms the northern arcade of Jahangir's Quadrangle and was one of the most important residential and administrative buildings of Lahore Fort. It served as the private imperial apartments where the emperor held intimate meetings with senior courtiers. The facade of the Doulat Khana is a masterpiece of early Mughal architecture, featuring elegant multi-cusped arches and refined stonework that predates Shah Jahan's later marble embellishments.",
-      "significance": "High — central residential complex of Jahangir's Fort; masterpiece of early Mughal architecture",
-      "status": "Open to visitors",
-      "reference_images": [
-        "doulat-khana_(20)_field.JPG",
-        "doulat-khana_(23)_field.JPG",
-        "doulat-khana_(44)_field.JPG",
-        "doulat-khana_(38)_field.JPG",
-        "doulat-khana_(10)_field.JPG"
-      ],
-      "tags": [
-        "mughal",
-        "jahangir",
-        "residential",
-        "quadrangle",
-        "treasury",
-        "arcade"
-      ]
-    },
-    {
-      "id": "hathi-paer-stairs",
-      "name": "Hathi Paer Stairs",
-      "name_urdu": "ہاتھی پیر زینہ",
-      "alternate_names": [
-        "Elephant Stairs",
-        "Elephant Steps",
-        "Royal Ramps",
-        "Hathi Paer"
-      ],
-      "quadrangle": "Alamgiri Gate Area",
-      "built_by": "Akbar / Jahangir",
-      "period": "Mughal",
-      "year_built": "c. 16th–17th century",
-      "coordinates": {
-        "lat": 31.58951944444444,
-        "lng": 74.31282775000001
-      },
-      "description": "Hathi Paer Stairs — literally 'Elephant Feet Stairs' — are the broad, gently inclined ramps built within Lahore Fort to allow war elephants and mounted cavalry to access the upper levels of the Fort complex. Unlike conventional human staircases, these wide sloping passages were engineered to bear the enormous weight of royal elephants used in ceremonial processions and military displays. They are a remarkable example of Mughal military-architectural engineering.",
-      "significance": "High — unique Mughal military engineering; elephant ramps are rare surviving examples",
-      "status": "Open to visitors",
-      "reference_images": [
-        "hathi-paer_(2)_field.JPG",
-        "hathi-paer_(4)_field.JPG",
-        "hathi-paer_(21)_field.JPG",
-        "hathi-paer_(16)_field.JPG"
-      ],
-      "tags": [
-        "mughal",
-        "akbar",
-        "jahangir",
-        "elephant",
-        "ramps",
-        "military",
-        "engineering"
-      ]
-    },
-    {
-      "id": "haveli-mai-jindan",
-      "name": "Haveli Mai Jindan",
-      "name_urdu": "حویلی مائی جنداں",
-      "alternate_names": [
-        "Mai Jindan's Haveli",
-        "Queen Mother's Residence"
-      ],
-      "quadrangle": "Eastern Sector",
-      "built_by": "Sikh Period",
-      "period": "Sikh",
-      "year_built": "c. 1830s–1840s",
-      "coordinates": {
-        "lat": 31.588611111111113,
-        "lng": 74.31483608333332
-      },
-      "description": "Haveli Mai Jindan is the residential quarters associated with Rani Jindan (Mai Jindan), the youngest wife of Maharaja Ranjit Singh and mother of the last Sikh ruler Maharaja Duleep Singh. She was one of the most politically significant women of the Sikh Empire, serving as regent after Ranjit Singh's death in 1839. The haveli represents the Sikh period's residential architectural tradition within the Fort, blending Mughal spatial organisation with Sikh decorative sensibilities.",
-      "significance": "High — rare Sikh-period residential structure; associated with a major historical figure",
-      "status": "Open to visitors",
-      "reference_images": [
-        "haveli-mai-jindan_(53)_field.JPG",
-        "haveli-mai-jindan_(41)_field.JPG",
-        "haveli-mai-jindan_(37)_field.JPG",
-        "haveli-mai-jindan_(11)_field.JPG",
-        "haveli-mai-jindan_(25)_field.JPG"
-      ],
-      "tags": [
-        "sikh",
-        "rani-jindan",
-        "residential",
-        "haveli",
-        "ranjit-singh",
-        "women"
-      ]
-    },
-    {
-      "id": "jahangir-quadrangle",
-      "name": "Jahangir's Quadrangle",
-      "name_urdu": "جہانگیر کا صحن",
-      "alternate_names": [
-        "Jahangiri Quadrangle",
-        "Daulat Khana-e-Khaas-o-Aam"
-      ],
-      "quadrangle": "Jahangir's Quadrangle",
-      "built_by": "Jahangir",
-      "period": "Mughal",
-      "year_built": "c. 1617–1618",
-      "coordinates": {
-        "lat": 31.589177749999998,
-        "lng": 74.31603055555557
-      },
-      "description": "The largest quadrangle within Lahore Fort, built during the reign of Emperor Jahangir. The courtyard was recently restored with its historical water features and pools reinstated. The four sides of the quadrangle are lined with elegant arcaded halls. The northern facade, known as the Daulat Khana-e-Khaas-o-Aam, is a masterpiece of early Mughal architecture. The quadrangle served as the imperial residential and administrative core of the Fort.",
-      "significance": "High — central Mughal residential complex; recently restored",
-      "status": "Open to visitors",
-      "reference_images": [
-        "jahangir-quadrangle_(151)_field.JPG",
-        "jahangir-quadrangle_(78)_field.JPG",
-        "jahangir-quadrangle_(93)_field.JPG",
-        "jahangir-quadrangle_(102)_field.JPG",
-        "jahangir-quadrangle_(172)_field.JPG",
-        "jahangir-quadrangle_(120)_field.JPG",
-        "jahangir-quadrangle_(57)_field.JPG"
-      ],
-      "tags": [
-        "mughal",
-        "jahangir",
-        "quadrangle",
-        "courtyard",
-        "water-features",
-        "arcade"
-      ]
-    },
-    {
-      "id": "lal-burj",
-      "name": "Lal Burj",
-      "name_urdu": "لال برج",
-      "alternate_names": [
-        "Red Tower",
-        "Lal Burj Bastion"
-      ],
-      "quadrangle": "South-Eastern Bastion",
-      "built_by": "Mughal (various)",
-      "period": "Mughal",
-      "year_built": "16th–17th century",
-      "coordinates": {
-        "lat": 31.589677749999986,
-        "lng": 74.31448333333331
-      },
-      "description": "Lal Burj (Red Tower) is one of the defensive bastions of Lahore Fort, named for its characteristic red brick construction. Located at a corner of the Fort's defensive perimeter, it originally served as a military watchtower and cannon platform. The use of red brick (as opposed to the white marble of Shah Jahan's period) indicates its construction during the earlier Akbari or Jahangiri phase of the Fort's development, when brick and sandstone were the primary materials.",
-      "significance": "Medium — early Mughal defensive architecture; contrasts with later marble constructions",
-      "status": "Open to visitors",
-      "reference_images": [
-        "lal-burj_(89)_field.JPG",
-        "lal-burj_(30)_field.JPG",
-        "lal-burj_(57)_field.JPG",
-        "lal-burj_(64)_field.JPG"
-      ],
-      "tags": [
-        "mughal",
-        "akbar",
-        "military",
-        "bastion",
-        "red-brick",
-        "defensive",
-        "tower"
-      ]
-    },
-    {
-      "id": "maktab-khana",
-      "name": "Maktab Khana",
-      "name_urdu": "مکتب خانہ",
-      "alternate_names": [
-        "Royal School",
-        "Imperial Scriptorium",
-        "Library Pavilion"
-      ],
-      "quadrangle": "Northern Sector",
-      "built_by": "Mughal (various)",
-      "period": "Mughal",
-      "year_built": "17th century",
-      "coordinates": {
-        "lat": 31.588561111111105,
-        "lng": 74.31403333333333
-      },
-      "description": "The Maktab Khana (Royal School or Scriptorium) was the imperial space within Lahore Fort designated for learning, manuscript copying, and royal correspondence. Mughal emperors placed great value on education and literary culture — Jahangir and Shah Jahan both maintained extensive court libraries. The Maktab Khana served as both an administrative writing office and a place of formal instruction for princes of the royal household.",
-      "significance": "Medium — rare surviving educational structure within a Mughal fort",
-      "status": "Open to visitors",
-      "reference_images": [
-        "maktab-khana_(2)_field.JPG",
-        "maktab-khana_(5)_field.JPG",
-        "maktab-khana_(7)_field.JPG"
-      ],
-      "tags": [
-        "mughal",
-        "education",
-        "library",
-        "scriptorium",
-        "royal-school",
-        "administrative"
-      ]
-    },
-    {
-      "id": "moti-masjid",
-      "name": "Moti Masjid",
-      "name_urdu": "موتی مسجد",
-      "alternate_names": [
-        "Pearl Mosque"
-      ],
-      "quadrangle": "Moti Masjid Quadrangle",
-      "built_by": "Shah Jahan / Aurangzeb",
-      "period": "Mughal",
-      "year_built": "c. 1645",
-      "coordinates": {
-        "lat": 31.58850277777779,
-        "lng": 74.31387222222224
-      },
-      "description": "The Moti Masjid (Pearl Mosque) is a small but elegant private mosque built within Lahore Fort for the imperial family's personal prayers. Constructed of white marble, it features three domed bays and a rectangular prayer chamber. The mosque is notable for its fine proportions and purity of white marble. Similar mosques of the same name exist in Delhi's Red Fort and Agra Fort, reflecting Shah Jahan's characteristic architectural language.",
-      "significance": "Medium-High — example of imperial private mosque architecture",
-      "status": "Open to visitors",
-      "reference_images": [
-        "moti-masjid_(1)_field.JPG",
-        "moti-masjid_(2)_field.JPG",
-        "moti-masjid_(10)_field.JPG",
-        "moti-masjid_(11)_field.JPG",
-        "moti-masjid_(14)_field.JPG"
-      ],
-      "tags": [
-        "mughal",
-        "shah-jahan",
-        "mosque",
         "marble",
-        "domes",
-        "private"
+        "pietra-dura",
+        "bangaldar",
+        "pavilion"
       ]
     },
     {
@@ -466,18 +83,14 @@
       "period": "Mughal",
       "year_built": "c. 1624",
       "coordinates": {
-        "lat": 31.589502777777774,
-        "lng": 74.3125388888889
+        "lat": 31.589706154227873,
+        "lng": 74.31288090707392
       },
-      "description": "The Picture Wall is a 1,450-foot-long exterior wall running along the northern and western faces of Lahore Fort. Built during the reign of Emperor Jahangir, it is decorated with elaborate glazed-tile mosaic work (kashi-kari) depicting hunting scenes, combat between mythological animals, polo matches, portraits of courtiers, and geometric patterns. It is considered one of the largest examples of Mughal decorative tile-work in existence.",
+      "description": "The Picture Wall is a 1,450-foot-long exterior wall running along the northern and western faces of Lahore Fort. Decorated with elaborate glazed-tile mosaic work (kashi-kari) depicting hunting scenes, mythological animals, polo matches, and portraits of courtiers. It is considered one of the largest examples of Mughal decorative tile-work in existence.",
       "significance": "Outstanding — largest Mughal tile-work panel in existence",
       "status": "Partially accessible — conservation ongoing",
-      "reference_images": [
-        "picture-wall_(6)_field.JPG",
-        "picture-wall_(26)_field.JPG",
-        "picture-wall_(57)_field.JPG",
-        "picture-wall_(61)_field.JPG"
-      ],
+      "gps_only": false,
+      "reference_images": [],
       "tags": [
         "mughal",
         "jahangir",
@@ -488,37 +101,148 @@
       ]
     },
     {
-      "id": "royal-kitchen",
-      "name": "Royal Kitchen",
-      "name_urdu": "شاہی باورچی خانہ",
+      "id": "sehdari-pavilion",
+      "name": "Sehdari Pavilion",
+      "name_urdu": "سہ داری",
       "alternate_names": [
-        "Imperial Kitchens",
-        "Shahi Bawarchi Khana"
+        "Three-Doored Pavilion"
       ],
-      "quadrangle": "South-Western Area",
-      "built_by": "Mughal (various)",
+      "quadrangle": "Shah Burj Quadrangle",
+      "built_by": "Shah Jahan",
       "period": "Mughal",
-      "year_built": "16th–17th century",
+      "year_built": "c. 17th century",
       "coordinates": {
-        "lat": 31.588100000000004,
-        "lng": 74.31336108333335
+        "lat": 31.589298683615617,
+        "lng": 74.31611152743696
       },
-      "description": "The Royal Kitchen (Shahi Bawarchi Khana) is a large complex of vaulted service buildings in the south-western part of Lahore Fort that once served the royal household. The kitchens are notable for their massive chimneys, ventilation shafts, and storage chambers designed to support large-scale food preparation for the imperial court. They are currently being adapted for reuse as a museum and visitor facility as part of the AKTC/WCLA conservation programme.",
-      "significance": "Medium — rare surviving service complex; being adaptively reused",
-      "status": "Under conservation — partially accessible",
-      "reference_images": [
-        "royal-kitchen_(55)_field.JPG",
-        "royal-kitchen_(40)_field.JPG",
-        "royal-kitchen_(25)_field.JPG",
-        "royal-kitchen_(18)_field.JPG"
-      ],
+      "description": "The Sehdari Pavilion (Three-Doored Pavilion) is a delicate open pavilion within the Shah Burj complex. Its name refers to its characteristic three-opening facade, a common Mughal architectural motif used to frame views and allow air circulation through the royal apartments. The pavilion served as a pleasure kiosk and viewing platform for the royal family.",
+      "significance": "Medium — elegant example of Mughal open pavilion architecture",
+      "status": "Open to visitors",
+      "gps_only": true,
+      "reference_images": [],
       "tags": [
         "mughal",
-        "service-buildings",
-        "adaptive-reuse",
-        "vaulted",
-        "conservation",
-        "kitchen"
+        "shah-jahan",
+        "pavilion",
+        "three-door",
+        "royal-apartments"
+      ]
+    },
+    {
+      "id": "khwabgah-jahangir",
+      "name": "Khwabgah-i-Jahangiri",
+      "name_urdu": "خوابگاہ جہانگیری",
+      "alternate_names": [
+        "Jahangir Sleeping Chamber",
+        "Jahangir's Private Apartments"
+      ],
+      "quadrangle": "Jahangir's Quadrangle",
+      "built_by": "Jahangir",
+      "period": "Mughal",
+      "year_built": "c. 1617–1618",
+      "coordinates": {
+        "lat": 31.58928938849217,
+        "lng": 74.31567868426711
+      },
+      "description": "The Khwabgah-i-Jahangiri (Sleeping Chamber of Jahangir) was the private bedroom and innermost sanctuary of Emperor Jahangir within Lahore Fort. Located behind the Daulat Khana, it represents the most private zone of the imperial residential complex. The chamber's interior once featured painted plasterwork and carved wooden screens providing ventilation and privacy to the sleeping emperor.",
+      "significance": "High — innermost private imperial apartment; rare surviving sleeping chamber",
+      "status": "Open to visitors",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "jahangir",
+        "private-apartments",
+        "sleeping-chamber",
+        "residential"
+      ]
+    },
+    {
+      "id": "jahangir-quadrangle",
+      "name": "Jahangir's Quadrangle",
+      "name_urdu": "جہانگیر کا صحن",
+      "alternate_names": [
+        "Jahangiri Quadrangle",
+        "Daulat Khana-e-Khaas-o-Aam"
+      ],
+      "quadrangle": "Jahangir's Quadrangle",
+      "built_by": "Jahangir",
+      "period": "Mughal",
+      "year_built": "c. 1617–1618",
+      "coordinates": {
+        "lat": 31.588891246492974,
+        "lng": 74.31558775081817
+      },
+      "description": "The largest quadrangle within Lahore Fort, built during the reign of Emperor Jahangir. The courtyard was recently restored with its historical water features and pools reinstated. The four sides of the quadrangle are lined with elegant arcaded halls. The northern facade, known as the Daulat Khana-e-Khaas-o-Aam, is a masterpiece of early Mughal architecture.",
+      "significance": "High — central Mughal residential complex; recently restored",
+      "status": "Open to visitors",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "jahangir",
+        "quadrangle",
+        "courtyard",
+        "water-features",
+        "arcade"
+      ]
+    },
+    {
+      "id": "sikh-wall",
+      "name": "Sikh Wall",
+      "name_urdu": "سکھ دیوار",
+      "alternate_names": [
+        "Ranjit Singh's Wall",
+        "Sikh Period Fortification"
+      ],
+      "quadrangle": "Northern Perimeter",
+      "built_by": "Maharaja Ranjit Singh",
+      "period": "Sikh",
+      "year_built": "c. 1800s",
+      "coordinates": {
+        "lat": 31.59001568002496,
+        "lng": 74.31566079706975
+      },
+      "description": "The Sikh Wall represents the additions and modifications made to Lahore Fort during the Sikh Empire under Maharaja Ranjit Singh. After the decline of the Mughal Empire, the Sikhs took control of Lahore Fort and made significant structural changes, including new fortification walls. This wall section is one of the visible remnants of the Sikh period's architectural interventions.",
+      "significance": "Medium — rare surviving Sikh period fortification within the Fort",
+      "status": "Visible from perimeter",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "sikh",
+        "ranjit-singh",
+        "fortification",
+        "wall",
+        "perimeter"
+      ]
+    },
+    {
+      "id": "arz-gah",
+      "name": "Arz Gah",
+      "name_urdu": "ارض گاہ",
+      "alternate_names": [
+        "Hall of Petitions",
+        "Petition Hall"
+      ],
+      "quadrangle": "Diwan-i-Aam Quadrangle",
+      "built_by": "Shah Jahan",
+      "period": "Mughal",
+      "year_built": "c. 17th century",
+      "coordinates": {
+        "lat": 31.58962773281649,
+        "lng": 74.31479505078161
+      },
+      "description": "The Arz Gah (Hall of Petitions) was the formal space within Lahore Fort where petitioners and visiting dignitaries presented their cases and gifts to the Mughal emperor. Located adjacent to the Diwan-i-Aam, it served as an antechamber to the main audience hall.",
+      "significance": "Medium — important administrative space of the Mughal court",
+      "status": "Open to visitors",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "shah-jahan",
+        "administrative",
+        "petition",
+        "court"
       ]
     },
     {
@@ -534,25 +258,774 @@
       "period": "Mughal",
       "year_built": "c. 1628–1658",
       "coordinates": {
-        "lat": 31.589241666666673,
-        "lng": 74.3146888888889
+        "lat": 31.589233330643992,
+        "lng": 74.31465963109176
       },
-      "description": "The Shah Jahan Quadrangle is one of the principal open courts within Lahore Fort, developed during the reign of Emperor Shah Jahan. The quadrangle is flanked by arcaded halls and residential chambers that once housed the emperor's private quarters (Khwabgah). Shah Jahan's architectural vision — characterised by white marble, intricate inlay, and formal garden layouts — is expressed throughout this section of the Fort.",
-      "significance": "High — central to Shah Jahan's Fort expansion; links to Khwabgah and Sheesh Mahal",
+      "description": "The Shah Jahan Quadrangle is one of the principal open courts within Lahore Fort, developed during the reign of Emperor Shah Jahan. The quadrangle is flanked by arcaded halls and residential chambers that once housed the emperor's private quarters. Shah Jahan's architectural vision — white marble, intricate inlay, and formal garden layouts — is expressed throughout.",
+      "significance": "High — central to Shah Jahan's Fort expansion",
       "status": "Open to visitors",
-      "reference_images": [
-        "shah-jahan-quadrangle_(21)_field.JPG",
-        "shah-jahan-quadrangle_(26)_field.JPG",
-        "shah-jahan-quadrangle_(27)_field.JPG",
-        "shah-jahan-quadrangle_(32)_field.JPG"
-      ],
+      "gps_only": false,
+      "reference_images": [],
       "tags": [
         "mughal",
         "shah-jahan",
         "quadrangle",
         "courtyard",
-        "khwabgah",
         "marble"
+      ]
+    },
+    {
+      "id": "diwan-i-khas",
+      "name": "Diwan-i-Khas",
+      "name_urdu": "دیوان خاص",
+      "alternate_names": [
+        "Hall of Private Audience"
+      ],
+      "quadrangle": "Shah Jahan Quadrangle",
+      "built_by": "Shah Jahan",
+      "period": "Mughal",
+      "year_built": "c. 1645",
+      "coordinates": {
+        "lat": 31.589489668117835,
+        "lng": 74.31474129263466
+      },
+      "description": "The Diwan-i-Khas (Hall of Private Audience) was the exclusive chamber where the Mughal emperor received high-ranking nobles, foreign ambassadors, and senior ministers in private. Unlike the Diwan-i-Aam which was open to the public, access to the Diwan-i-Khas was strictly limited to the most senior courtiers. The hall featured marble inlay work and intricate carved stone screens.",
+      "significance": "High — imperial private audience hall; restricted access during Mughal period",
+      "status": "Open to visitors",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "shah-jahan",
+        "private-audience",
+        "marble",
+        "exclusive"
+      ]
+    },
+    {
+      "id": "lal-burj",
+      "name": "Lal Burj",
+      "name_urdu": "لال برج",
+      "alternate_names": [
+        "Red Tower"
+      ],
+      "quadrangle": "North-Western Bastion",
+      "built_by": "Mughal (various)",
+      "period": "Mughal",
+      "year_built": "16th–17th century",
+      "coordinates": {
+        "lat": 31.58959549528335,
+        "lng": 74.31439846540577
+      },
+      "description": "Lal Burj (Red Tower) is one of the defensive bastions of Lahore Fort, named for its characteristic red brick construction. Located at a corner of the Fort's defensive perimeter, it originally served as a military watchtower and cannon platform. Its red brick construction contrasts with the white marble of Shah Jahan's later additions.",
+      "significance": "Medium — early Mughal defensive architecture",
+      "status": "Open to visitors",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "military",
+        "bastion",
+        "red-brick",
+        "defensive",
+        "tower"
+      ]
+    },
+    {
+      "id": "kala-burj",
+      "name": "Kala Burj",
+      "name_urdu": "کالا برج",
+      "alternate_names": [
+        "Black Tower",
+        "Kala Burj Bastion"
+      ],
+      "quadrangle": "Northern Perimeter",
+      "built_by": "Mughal (various)",
+      "period": "Mughal",
+      "year_built": "16th–17th century",
+      "coordinates": {
+        "lat": 31.589748467606846,
+        "lng": 74.31387005320975
+      },
+      "description": "Kala Burj (Black Tower) is a defensive bastion on the northern perimeter of Lahore Fort, paired architecturally with the nearby Lal Burj (Red Tower). Named for its darker stone construction, it served as a watchtower and defensive position. Together, Kala Burj and Lal Burj formed a pair of complementary towers guarding the north-western approaches to the Fort.",
+      "significance": "Medium — paired defensive tower; complements Lal Burj",
+      "status": "Partially accessible",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "military",
+        "bastion",
+        "black-tower",
+        "defensive",
+        "perimeter"
+      ]
+    },
+    {
+      "id": "khilwat-khana",
+      "name": "Khilwat Khana",
+      "name_urdu": "خلوت خانہ",
+      "alternate_names": [
+        "Private Retreat",
+        "Seclusion Chamber"
+      ],
+      "quadrangle": "Northern Residential Area",
+      "built_by": "Shah Jahan",
+      "period": "Mughal",
+      "year_built": "c. 17th century",
+      "coordinates": {
+        "lat": 31.589604299452667,
+        "lng": 74.31419175158825
+      },
+      "description": "The Khilwat Khana (Private Retreat or Seclusion Chamber) was the emperor's most private space within Lahore Fort — a secluded room used for meditation, private prayer, and moments of personal reflection away from the demands of court. Adjacent to the Shahi Hammam, it formed part of the innermost private zone of the imperial residential complex.",
+      "significance": "Medium — rare surviving imperial seclusion space",
+      "status": "Open to visitors",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "shah-jahan",
+        "private",
+        "seclusion",
+        "meditation",
+        "residential"
+      ]
+    },
+    {
+      "id": "pain-bagh",
+      "name": "Pain Bagh",
+      "name_urdu": "پائیں باغ",
+      "alternate_names": [
+        "Lower Garden",
+        "Ladies Garden",
+        "Paien Bagh"
+      ],
+      "quadrangle": "Southern Garden",
+      "built_by": "Shah Jahan",
+      "period": "Mughal",
+      "year_built": "c. 17th century",
+      "coordinates": {
+        "lat": 31.589281846202603,
+        "lng": 74.3140728911412
+      },
+      "description": "Pain Bagh (Lower Garden) was the formal garden of the ladies of the imperial household — the zenana. Located in the southern part of Lahore Fort, it was a private garden space reserved for the royal women. Designed in the Mughal charbagh (four-garden) tradition with water channels, flowerbeds, and shaded walkways, it provided a secluded outdoor space for the imperial harem.",
+      "significance": "High — rare surviving zenana garden within a Mughal fort",
+      "status": "Open to visitors",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "shah-jahan",
+        "garden",
+        "zenana",
+        "ladies",
+        "charbagh",
+        "harem"
+      ]
+    },
+    {
+      "id": "shahi-hammam",
+      "name": "Shahi Hammam",
+      "name_urdu": "شاہی حمام",
+      "alternate_names": [
+        "Royal Baths",
+        "Imperial Hammam"
+      ],
+      "quadrangle": "Northern Residential Area",
+      "built_by": "Shah Jahan",
+      "period": "Mughal",
+      "year_built": "c. 1641",
+      "coordinates": {
+        "lat": 31.58905513778987,
+        "lng": 74.3140871027145
+      },
+      "description": "The Shahi Hammam (Royal Baths) was the imperial bathhouse complex of Lahore Fort. Built during Shah Jahan's reign, it featured a sophisticated system of hot and cold rooms, steam chambers, and underfloor heating (hypocaust) based on the Persian hammam tradition. The walls were decorated with polychrome tile-work and painted plaster. It provided the royal family with bathing and grooming facilities of the highest standard.",
+      "significance": "High — finest surviving Mughal royal bath complex in Lahore Fort",
+      "status": "Open to visitors",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "shah-jahan",
+        "hammam",
+        "baths",
+        "residential",
+        "hypocaust",
+        "tiles"
+      ]
+    },
+    {
+      "id": "athdara",
+      "name": "Athdara",
+      "name_urdu": "اٹھ دارا",
+      "alternate_names": [
+        "Eight-Columned Pavilion",
+        "Court of Maharaja Ranjit Singh",
+        "Att H Dara"
+      ],
+      "quadrangle": "Shah Burj Area",
+      "built_by": "Maharaja Ranjit Singh",
+      "period": "Sikh",
+      "year_built": "c. 1818–1839",
+      "coordinates": {
+        "lat": 31.589756321435324,
+        "lng": 74.31344648329733
+      },
+      "description": "Athdara (Eight-Columned Pavilion) is an open marble pavilion built by Maharaja Ranjit Singh as his personal court and audience space within Lahore Fort. The name refers to its eight columns supporting the roof. Ranjit Singh held court here, dispensed justice, and received visitors in the open air, following a tradition of accessible kingship. The pavilion is a fine example of Sikh-period architectural refinement blending Mughal marble craftsmanship with Sikh spatial sensibility.",
+      "significance": "High — Maharaja Ranjit Singh's personal court; finest Sikh period structure inside the Fort",
+      "status": "Open to visitors",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "sikh",
+        "ranjit-singh",
+        "pavilion",
+        "eight-column",
+        "court",
+        "marble",
+        "audience"
+      ]
+    },
+    {
+      "id": "haveli-mai-jindan",
+      "name": "Haveli Mai Jindan",
+      "name_urdu": "حویلی مائی جنداں",
+      "alternate_names": [
+        "Mai Jindan's Haveli",
+        "Queen Mother's Residence"
+      ],
+      "quadrangle": "Eastern Sector",
+      "built_by": "Sikh Period",
+      "period": "Sikh",
+      "year_built": "c. 1830s–1840s",
+      "coordinates": {
+        "lat": 31.58862557277238,
+        "lng": 74.31473222505946
+      },
+      "description": "Haveli Mai Jindan is the residential quarters associated with Rani Jindan, the youngest wife of Maharaja Ranjit Singh and mother of the last Sikh ruler Maharaja Duleep Singh. She served as regent after Ranjit Singh's death in 1839. The haveli represents the Sikh period's residential architectural tradition within the Fort.",
+      "significance": "High — rare Sikh-period residential structure; associated with a major historical figure",
+      "status": "Open to visitors",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "sikh",
+        "rani-jindan",
+        "residential",
+        "haveli",
+        "ranjit-singh"
+      ]
+    },
+    {
+      "id": "moti-masjid",
+      "name": "Moti Masjid",
+      "name_urdu": "موتی مسجد",
+      "alternate_names": [
+        "Pearl Mosque"
+      ],
+      "quadrangle": "Moti Masjid Quadrangle",
+      "built_by": "Shah Jahan / Aurangzeb",
+      "period": "Mughal",
+      "year_built": "c. 1645",
+      "coordinates": {
+        "lat": 31.588441112458856,
+        "lng": 74.31369913832265
+      },
+      "description": "The Moti Masjid (Pearl Mosque) is a small but elegant private mosque built within Lahore Fort for the imperial family's personal prayers. Constructed of white marble, it features three domed bays and a rectangular prayer chamber, notable for its fine proportions and purity of white marble.",
+      "significance": "Medium-High — example of imperial private mosque architecture",
+      "status": "Open to visitors",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "shah-jahan",
+        "mosque",
+        "marble",
+        "domes",
+        "private"
+      ]
+    },
+    {
+      "id": "maktab-khana",
+      "name": "Maktab Khana",
+      "name_urdu": "مکتب خانہ",
+      "alternate_names": [
+        "Royal School",
+        "Imperial Scriptorium"
+      ],
+      "quadrangle": "Northern Sector",
+      "built_by": "Mughal (various)",
+      "period": "Mughal",
+      "year_built": "17th century",
+      "coordinates": {
+        "lat": 31.58838842296839,
+        "lng": 74.31395407816925
+      },
+      "description": "The Maktab Khana (Royal School or Scriptorium) was the imperial space designated for learning, manuscript copying, and royal correspondence. Mughal emperors placed great value on education and literary culture — Jahangir and Shah Jahan both maintained extensive court libraries.",
+      "significance": "Medium — rare surviving educational structure within a Mughal fort",
+      "status": "Open to visitors",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "education",
+        "library",
+        "scriptorium",
+        "administrative"
+      ]
+    },
+    {
+      "id": "doulat-khana",
+      "name": "Daulat Khana Khas-o-Aam",
+      "name_urdu": "دولت خانہ خاص و عام",
+      "alternate_names": [
+        "Doulat Khana",
+        "Treasury"
+      ],
+      "quadrangle": "Jahangir's Quadrangle",
+      "built_by": "Jahangir",
+      "period": "Mughal",
+      "year_built": "c. 1617–1618",
+      "coordinates": {
+        "lat": 31.588277103981138,
+        "lng": 74.3153256406436
+      },
+      "description": "The Daulat Khana Khas-o-Aam (House of Wealth, Private and Public) forms the northern arcade of Jahangir's Quadrangle. It was one of the most important residential and administrative buildings of Lahore Fort, serving as both private imperial apartments and semi-public reception space. The facade is a masterpiece of early Mughal architecture.",
+      "significance": "High — central residential complex of Jahangir's Fort",
+      "status": "Open to visitors",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "jahangir",
+        "residential",
+        "quadrangle",
+        "treasury",
+        "arcade"
+      ]
+    },
+    {
+      "id": "diwan-i-amm",
+      "name": "Diwan-i-Aam",
+      "name_urdu": "دیوان عام",
+      "alternate_names": [
+        "Hall of Public Audience"
+      ],
+      "quadrangle": "Diwan-i-Aam Quadrangle",
+      "built_by": "Shah Jahan",
+      "period": "Mughal",
+      "year_built": "c. 1628–1658",
+      "coordinates": {
+        "lat": 31.58812973444832,
+        "lng": 74.31529077192928
+      },
+      "description": "The Diwan-i-Aam (Hall of Public Audience) is where the Mughal emperors held open court sessions to hear petitions from ordinary citizens. The structure is a colonnaded hall facing an open quadrangle. A raised marble platform at the rear marks where the imperial throne once stood.",
+      "significance": "High — major Mughal administrative monument",
+      "status": "Open to visitors",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "shah-jahan",
+        "audience-hall",
+        "public",
+        "colonnaded"
+      ]
+    },
+    {
+      "id": "shah-burj-gate",
+      "name": "Shah Burj Gate",
+      "name_urdu": "شاہ برج دروازہ",
+      "alternate_names": [
+        "Hathi Pol",
+        "Elephant Gate"
+      ],
+      "quadrangle": "Northern Entrance",
+      "built_by": "Akbar / Jahangir",
+      "period": "Mughal",
+      "year_built": "c. 16th–17th century",
+      "coordinates": {
+        "lat": 31.589311916399346,
+        "lng": 74.31274695934556
+      },
+      "description": "Shah Burj Gate (also known as Hathi Pol or Elephant Gate) is the northern entrance to the Shah Burj complex of Lahore Fort. This gate was the ceremonial entrance used by the imperial family to access their private royal quarters in the Shah Burj. The gate is connected to the Hathi Peer Stairs (elephant ramps) which allowed royal elephants to enter the upper Fort complex.",
+      "significance": "High — royal ceremonial gate; connects to Hathi Peer Stairs",
+      "status": "Open to visitors",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "akbar",
+        "jahangir",
+        "gate",
+        "elephant",
+        "ceremonial",
+        "northern-entrance"
+      ]
+    },
+    {
+      "id": "barood-khana",
+      "name": "Barood Khana",
+      "name_urdu": "بارود خانہ",
+      "alternate_names": [
+        "Powder House",
+        "Armoury",
+        "Magazine"
+      ],
+      "quadrangle": "Western Area",
+      "built_by": "Mughal (various)",
+      "period": "Mughal",
+      "year_built": "16th–17th century",
+      "coordinates": {
+        "lat": 31.588805527777772,
+        "lng": 74.31276666666665
+      },
+      "description": "The Barood Khana (Gunpowder House) was the imperial armoury and ammunition depot of Lahore Fort. Its thick-walled, vaulted construction was designed to contain accidental explosions. It stands as evidence of the Fort's dual role as both a royal residence and a military stronghold.",
+      "significance": "Medium — rare surviving Mughal military-industrial structure",
+      "status": "Open to visitors",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "military",
+        "armoury",
+        "vaulted",
+        "gunpowder",
+        "storage"
+      ]
+    },
+    {
+      "id": "alamgiri-gate",
+      "name": "Alamgiri Gate",
+      "name_urdu": "عالمگیری دروازہ",
+      "alternate_names": [
+        "Aurangzeb's Gate"
+      ],
+      "quadrangle": "Main Entrance",
+      "built_by": "Aurangzeb",
+      "period": "Mughal",
+      "year_built": "1673",
+      "coordinates": {
+        "lat": 31.588531237106725,
+        "lng": 74.31269642617329
+      },
+      "description": "The main western entrance gate to Lahore Fort, built by Emperor Aurangzeb in 1673. The gate faces the Badshahi Mosque across the Hazuri Bagh. It is flanked by two large semi-circular bastions decorated with white marble and faience tile-work.",
+      "significance": "High — primary Fort entrance, faces Badshahi Mosque",
+      "status": "Open to visitors — main entry point",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "aurangzeb",
+        "gate",
+        "entrance",
+        "faience",
+        "bastion"
+      ]
+    },
+    {
+      "id": "royal-kitchen",
+      "name": "Royal Kitchen",
+      "name_urdu": "شاہی باورچی خانہ",
+      "alternate_names": [
+        "Imperial Kitchens",
+        "Shahi Bawarchi Khana"
+      ],
+      "quadrangle": "South-Western Area",
+      "built_by": "Mughal (various)",
+      "period": "Mughal",
+      "year_built": "16th–17th century",
+      "coordinates": {
+        "lat": 31.58797074328574,
+        "lng": 74.31302990994524
+      },
+      "description": "The Royal Kitchen (Shahi Bawarchi Khana) is a large complex of vaulted service buildings that once served the royal household. Notable for massive chimneys, ventilation shafts, and storage chambers. Currently being adapted for reuse as a museum as part of the AKTC/WCLA conservation programme.",
+      "significance": "Medium — rare surviving service complex; being adaptively reused",
+      "status": "Under conservation — partially accessible",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "service-buildings",
+        "adaptive-reuse",
+        "vaulted",
+        "conservation",
+        "kitchen"
+      ]
+    },
+    {
+      "id": "loh-temple",
+      "name": "Loh Temple",
+      "name_urdu": "لوہ مندر",
+      "alternate_names": [
+        "Lav Temple",
+        "Naag Temple and Loh Temple"
+      ],
+      "quadrangle": "Southern Area",
+      "built_by": "Pre-Mughal / Hindu",
+      "period": "Pre-Mughal",
+      "year_built": "Ancient — exact date unknown",
+      "coordinates": {
+        "lat": 31.58817427684184,
+        "lng": 74.31283352489811
+      },
+      "description": "The Loh Temple (also known as Lav Temple) is associated with Lav (or Loh), the legendary son of Rama, after whom Lahore is traditionally named. Along with the Naag Temple, it represents the pre-Mughal Hindu religious heritage of Lahore Fort's site. These temples are among the oldest structures associated with the Fort's location, predating the Mughal construction by many centuries.",
+      "significance": "Outstanding — pre-Mughal heritage; connects Fort to Lahore's founding mythology",
+      "status": "Accessible — historically significant",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "pre-mughal",
+        "hindu",
+        "temple",
+        "lav",
+        "rama",
+        "ancient",
+        "mythology",
+        "lahore-origin"
+      ]
+    },
+    {
+      "id": "akbari-gate",
+      "name": "Masti Gate / Akbari Gate",
+      "name_urdu": "مستی دروازہ / اکبری دروازہ",
+      "alternate_names": [
+        "Masti Gate",
+        "Akbari Gate"
+      ],
+      "quadrangle": "Eastern Entrance",
+      "built_by": "Akbar",
+      "period": "Mughal",
+      "year_built": "c. 1566",
+      "coordinates": {
+        "lat": 31.587521851166674,
+        "lng": 74.31679914517618
+      },
+      "description": "The Akbari Gate (also associated with nearby Masti Gate) is the oldest surviving gate of Lahore Fort, built during the reign of Emperor Akbar. It reflects Akbar's early architectural style, blending Timurid Central Asian forms with Indian craftsmanship. It was one of several gates constructed to compartmentalise the Fort's functions.",
+      "significance": "Medium-High — oldest surviving gate in the Fort",
+      "status": "Open to visitors",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "akbar",
+        "gate",
+        "oldest",
+        "timurid",
+        "eastern"
+      ]
+    },
+    {
+      "id": "stables",
+      "name": "Royal Stables",
+      "name_urdu": "شاہی اصطبل",
+      "alternate_names": [
+        "Stables (Ruined)",
+        "Imperial Stables"
+      ],
+      "quadrangle": "Eastern Sector",
+      "built_by": "Mughal (various)",
+      "period": "Mughal",
+      "year_built": "16th–17th century",
+      "coordinates": {
+        "lat": 31.588291953708055,
+        "lng": 74.31695248320518
+      },
+      "description": "The Royal Stables were the imperial facilities for housing the emperor's horses, elephants, and other animals essential to court life and military operations. Now largely in ruins, the stables were once a significant part of the Fort's service infrastructure. The remaining walls and foundations give a sense of the scale at which the Mughal imperial court operated.",
+      "significance": "Low-Medium — historical service infrastructure; largely ruined",
+      "status": "Ruined — visible remnants only",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "stables",
+        "ruined",
+        "service",
+        "horses",
+        "elephants",
+        "infrastructure"
+      ]
+    },
+    {
+      "id": "musamman-burj",
+      "name": "Musamman Burj",
+      "name_urdu": "مسمن برج",
+      "alternate_names": [
+        "Musaman Gate",
+        "Octagonal Tower"
+      ],
+      "quadrangle": "Northern Bastion",
+      "built_by": "Shah Jahan",
+      "period": "Mughal",
+      "year_built": "c. 1631",
+      "coordinates": {
+        "lat": 31.588436083333328,
+        "lng": 74.31314163888888
+      },
+      "description": "The Musamman Burj (Octagonal Tower) is a prominent bastion of Lahore Fort, rising from the northern perimeter wall. Its octagonal form — unusual in Mughal military architecture — gave it both defensive utility and visual distinction. The tower served as a watchtower and could accommodate artillery for the defence of the Fort's northern face.",
+      "significance": "Medium — distinctive octagonal defensive tower; overlooks Picture Wall",
+      "status": "Partially accessible",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "shah-jahan",
+        "bastion",
+        "octagonal",
+        "defensive",
+        "tower",
+        "artillery"
+      ]
+    },
+    {
+      "id": "hathi-peer-stairs",
+      "name": "Hathi Peer Stairs",
+      "name_urdu": "ہاتھی پیر زینہ",
+      "alternate_names": [
+        "Elephant Stairs",
+        "Elephant Path",
+        "Hathi Paer"
+      ],
+      "quadrangle": "Alamgiri Gate Area",
+      "built_by": "Akbar / Jahangir",
+      "period": "Mughal",
+      "year_built": "c. 16th–17th century",
+      "coordinates": {
+        "lat": 31.589470825257315,
+        "lng": 74.31285242755285
+      },
+      "description": "Hathi Peer Stairs are the broad, gently inclined ramps built within Lahore Fort to allow war elephants and mounted cavalry to access the upper levels. These wide sloping passages were engineered to bear the enormous weight of royal elephants used in ceremonial processions and military displays.",
+      "significance": "High — unique Mughal military engineering; elephant ramps are rare surviving examples",
+      "status": "Open to visitors",
+      "gps_only": false,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "akbar",
+        "jahangir",
+        "elephant",
+        "ramps",
+        "military",
+        "engineering"
+      ]
+    },
+    {
+      "id": "akbari-mahal-kutab-khana",
+      "name": "Akbari Mahal Kutab Khana",
+      "name_urdu": "اکبری محل کتاب خانہ",
+      "alternate_names": [
+        "Akbari Palace Library",
+        "Akbar's Library"
+      ],
+      "quadrangle": "Eastern Sector",
+      "built_by": "Akbar",
+      "period": "Mughal",
+      "year_built": "c. 16th century",
+      "coordinates": {
+        "lat": 31.588435046951975,
+        "lng": 74.31591874566337
+      },
+      "description": "The Akbari Mahal Kutab Khana was the library and manuscript repository associated with Akbar's palace complex within Lahore Fort. Emperor Akbar, despite being unable to read himself, was a great patron of learning and maintained one of the largest manuscript collections of the Mughal Empire. This building served as the centre of literary and scholarly activity during his reign.",
+      "significance": "Medium — Akbar's personal library; centre of Mughal scholarship",
+      "status": "Partially accessible",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "akbar",
+        "library",
+        "manuscripts",
+        "scholarship",
+        "eastern-sector"
+      ]
+    },
+    {
+      "id": "haveli-karak-singh",
+      "name": "Haveli Karak Singh",
+      "name_urdu": "حویلی کرک سنگھ",
+      "alternate_names": [
+        "Kharak Singh Haveli",
+        "Karak Singh's Mansion"
+      ],
+      "quadrangle": "Eastern Sector",
+      "built_by": "Sikh Period",
+      "period": "Sikh",
+      "year_built": "c. 1820s–1840s",
+      "coordinates": {
+        "lat": 31.588240562202436,
+        "lng": 74.31574071582548
+      },
+      "description": "Haveli Karak Singh was the residential mansion of Karak Singh, the eldest son of Maharaja Ranjit Singh and heir to the Sikh Empire. Built in the Sikh architectural style within Lahore Fort's eastern sector, it represents the residential quarters of the Sikh royal family. Karak Singh briefly succeeded his father as Maharaja in 1839 before dying the same year.",
+      "significance": "Medium — Sikh royal residential mansion; historically significant occupant",
+      "status": "Open to visitors",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "sikh",
+        "karak-singh",
+        "ranjit-singh",
+        "residential",
+        "haveli",
+        "royal"
+      ]
+    },
+    {
+      "id": "akbari-hammam",
+      "name": "Akbari Hammam",
+      "name_urdu": "اکبری حمام",
+      "alternate_names": [
+        "Akbar's Baths"
+      ],
+      "quadrangle": "Eastern Sector",
+      "built_by": "Akbar",
+      "period": "Mughal",
+      "year_built": "c. 16th century",
+      "coordinates": {
+        "lat": 31.588435322023113,
+        "lng": 74.31665750885824
+      },
+      "description": "The Akbari Hammam is the bathhouse complex associated with Emperor Akbar's period of Lahore Fort, predating the more elaborate Shahi Hammam of Shah Jahan's time. Built in the Persian hammam tradition with hot and cold rooms, it served the eastern residential section of the Fort. It is one of the earlier surviving bathing facilities within the Fort.",
+      "significance": "Medium — early Mughal bathhouse; precursor to the Shahi Hammam",
+      "status": "Accessible",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "mughal",
+        "akbar",
+        "hammam",
+        "baths",
+        "eastern-sector",
+        "persian"
+      ]
+    },
+    {
+      "id": "british-jail",
+      "name": "British Jail / Qaidkhana",
+      "name_urdu": "برطانوی جیل / قیدخانہ",
+      "alternate_names": [
+        "Quidkhana",
+        "Colonial Prison",
+        "British Period Jail"
+      ],
+      "quadrangle": "Northern Area",
+      "built_by": "British Colonial Administration",
+      "period": "Colonial",
+      "year_built": "19th century",
+      "coordinates": {
+        "lat": 31.589386083333338,
+        "lng": 74.31343888888887
+      },
+      "description": "The British Jail (Qaidkhana) is a Colonial-period addition to Lahore Fort, built by the British administration after they took control of Punjab in 1849. After the Anglo-Sikh Wars, the British converted parts of Lahore Fort from a royal residence into a military and administrative facility. This jail was used to house political prisoners during the colonial period, adding a layer of colonial history to the Fort's multi-layered story.",
+      "significance": "Medium — Colonial period addition; represents the Fort's post-Mughal history",
+      "status": "Open to visitors",
+      "gps_only": true,
+      "reference_images": [],
+      "tags": [
+        "colonial",
+        "british",
+        "jail",
+        "prison",
+        "political-prisoners",
+        "19th-century"
       ]
     }
   ],
@@ -610,7 +1083,7 @@
       "name": "Lohari Gate",
       "coordinates": {
         "lat": 31.5741,
-        "lng": 74.3130
+        "lng": 74.313
       }
     },
     {
@@ -626,7 +1099,7 @@
       "name": "Delhi Gate",
       "coordinates": {
         "lat": 31.5771,
-        "lng": 74.3180
+        "lng": 74.318
       }
     },
     {
@@ -636,20 +1109,13 @@
         "lat": 31.5811,
         "lng": 74.3192
       }
-    },
-    {
-      "id": "akbari-gate-wc",
-      "name": "Akbari Gate (Walled City)",
-      "coordinates": {
-        "lat": 31.5826,
-        "lng": 74.3055
-      }
     }
   ],
   "meta": {
     "coordinate_system": "WGS84 (decimal degrees)",
+    "gps_only_note": "Landmarks marked gps_only:true are identified purely by GPS proximity — no CNN model trained on them. They appear in GPS-based identification only.",
     "image_folder_structure": "assets/{landmark_id}/",
-    "image_naming_convention": "{landmark_id}_(N)_field.JPG or {landmark_id}_(N)_web.jpg",
-    "notes": "Coordinates are approximate. reference_images should contain 3-5 best photos per landmark shown in app UI. Folder name must exactly match landmark id."
+    "gps_radius_meters": 30,
+    "notes": "Coordinates sourced from personal GPS field capture during site visit. For gps_only landmarks, identification fires when user is within 30m of coordinates."
   }
 }

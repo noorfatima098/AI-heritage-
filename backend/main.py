@@ -140,6 +140,39 @@ async def identify(file: UploadFile, lat: float = Form(None), lng: float = Form(
     tmp = os.path.join(tempfile.gettempdir(), file.filename)
     with open(tmp, "wb") as f:
         shutil.copyfileobj(file.file, f)
+    # GPS-ONLY check — CNN se pehle
+    # Agar user 30m ke andar hai kisi bhi landmark ke — seedha identify karo
+    if lat is not None and lng is not None:
+        nearest = None
+        min_dist = float('inf')
+        for l in dataset["landmarks"]:
+            dist = haversine_m(lat, lng, l["coordinates"]["lat"], l["coordinates"]["lng"])
+            if dist < min_dist:
+                min_dist = dist
+                nearest = l
+        
+        if min_dist < 30 and nearest:
+            os.remove(tmp)
+            print(f"DEBUG: GPS identified — {nearest['id']} at {min_dist:.1f}m")
+            try:
+                narrative = generate_narrative(nearest["id"], chroma_client=chroma_client, groq_client=groq_client)
+            except ValueError:
+                narrative = f"{nearest['name']} is a significant heritage monument within Lahore Fort. {nearest['description']}"
+            return {
+                "recognised":       True,
+                "landmark_id":      nearest["id"],
+                "confidence":       99.0,
+                "name":             nearest["name"],
+                "name_urdu":        nearest["name_urdu"],
+                "built_by":         nearest["built_by"],
+                "year_built":       nearest["year_built"],
+                "period":           nearest["period"],
+                "coordinates":      nearest["coordinates"],
+                "significance":     nearest["significance"],
+                "narrative":        narrative,
+                "reference_images": nearest["reference_images"],
+                "identified_by":    "GPS"
+            }
 
     top_preds = classify(tmp)
     landmark_id, confidence = top_preds[0]
