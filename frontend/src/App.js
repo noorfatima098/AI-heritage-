@@ -7,7 +7,7 @@ import Map from "./pages/Map";
 import MonumentDetail from "./pages/MonumentDetail";
 import About from "./pages/About";
 import "./App.css";
-
+import AR from "./pages/AR";
 export default function App() {
   return (
     <BrowserRouter>
@@ -19,6 +19,7 @@ export default function App() {
         <Route path="/map" element={<Map />} />
         <Route path="/monument/:id" element={<MonumentDetail />} />
         <Route path="/about" element={<About />} />
+        <Route path="/ar" element={<AR />} />
       </Routes>
     </BrowserRouter>
   );

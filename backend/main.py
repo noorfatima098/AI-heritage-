@@ -276,5 +276,35 @@ async def enhance(file: UploadFile):
 @app.get("/landmarks")
 async def get_landmarks():
     return {"landmarks": dataset["landmarks"]}
+@app.get("/identify-by-gps")
+async def identify_by_gps(lat: float, lng: float):
+    nearest = None
+    min_dist = float('inf')
+    for l in dataset["landmarks"]:
+        dist = haversine_m(lat, lng, l["coordinates"]["lat"], l["coordinates"]["lng"])
+        if dist < min_dist:
+            min_dist = dist
+            nearest = l
+    if not nearest:
+        return {"recognised": False}
+    try:
+        narrative = generate_narrative(nearest["id"], chroma_client=chroma_client, groq_client=groq_client)
+    except ValueError:
+        narrative = f"{nearest['name']} — {nearest['description']}"
+    return {
+        "recognised": True,
+        "landmark_id": nearest["id"],
+        "confidence": 99.0,
+        "name": nearest["name"],
+        "name_urdu": nearest["name_urdu"],
+        "built_by": nearest["built_by"],
+        "year_built": nearest["year_built"],
+        "period": nearest["period"],
+        "coordinates": nearest["coordinates"],
+        "significance": nearest["significance"],
+        "narrative": narrative,
+        "reference_images": nearest["reference_images"],
+        "distance_m": round(min_dist, 1)
+    }
 #cd "C:\Users\User\OneDrive\Desktop\python\AI heritage\AI-heritage-\backend"
 # uvicorn main:app --reload

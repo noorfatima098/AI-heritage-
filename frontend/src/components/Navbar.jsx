@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "./Icon";
 import "./Navbar.css";
-
+  
 const links = [
   { to: "/explore",  label: "Explore Monuments" },
   { to: "/map",       label: "Explore Map"       },
   { to: "/identify",  label: "Identify Landmark" },
+  { to: "/ar",        label: "Augmented Reality" },
   { to: "/about",     label: "About"             },
 ];
 
