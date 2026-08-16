@@ -33,6 +33,12 @@ const DEMO_LANDMARKS = [
   { id: "akbari-hammam", name: "Akbari Hammam", lat: 31.588435322023113, lng: 74.31665750885824 },
 ];
 
+// Same 30m radius the backend's /identify GPS-only path uses — keep in
+// sync so "found it" in AR matches "found it" via GPS elsewhere in the app.
+const NEARBY_THRESHOLD_M = 30;
+// watchPosition can fire every 1-2s — don't hit the backend that often.
+const FETCH_THROTTLE_MS = 4000;
+
 export default function AR() {
   const videoRef = useRef(null);
   const [demoMode, setDemoMode] = useState(false);
@@ -41,6 +47,10 @@ export default function AR() {
   const [loading, setLoading] = useState(false);
   const [cameraOn, setCameraOn] = useState(false);
   const [error, setError] = useState(null);
+  const [nearestDistance, setNearestDistance] = useState(null); // live "X m away" hint
+
+  const watchIdRef = useRef(null);
+  const lastFetchAtRef = useRef(0);
 
   // Camera start karo
   async function startCamera() {
@@ -61,18 +71,90 @@ export default function AR() {
     if (stream) stream.getTracks().forEach(t => t.stop());
     setCameraOn(false);
     setResult(null);
+    setNearestDistance(null);
   }
+
+  // Live identify — current GPS position ke hisaab se backend se poochta hai
+  // "yahan kya hai", throttled taake har GPS tick pe backend na hit ho.
+  async function fetchLiveIdentify(lat, lng) {
+    const now = Date.now();
+    if (now - lastFetchAtRef.current < FETCH_THROTTLE_MS) return;
+    lastFetchAtRef.current = now;
+
+    setLoading(true);
+    try {
+      const res = await axios.get(
+        `http://localhost:8000/identify-by-gps?lat=${lat}&lng=${lng}`
+      );
+      setNearestDistance(res.data.distance_m ?? null);
+      if (res.data.recognised && res.data.distance_m <= NEARBY_THRESHOLD_M) {
+        setResult({ ...res.data, identified_by: "GPS" });
+      } else {
+        // Bohot door hai kisi bhi landmark se — card mat dikhao, sirf distance hint
+        setResult(null);
+      }
+    } catch {
+      // Backend down ya network issue — chup chaap agli GPS tick pe retry hoga
+    }
+    setLoading(false);
+  }
+
+  // Camera ON hote hi live GPS watch shuru karo (Demo Mode ke alawa), aur
+  // camera OFF hone ya component unmount hone par saaf band kar do —
+  // warna GPS watch background mein chalta rahega aur battery/privacy
+  // dono ka masla banega.
+  useEffect(() => {
+    if (!cameraOn || demoMode) {
+      if (watchIdRef.current !== null) {
+        navigator.geolocation.clearWatch(watchIdRef.current);
+        watchIdRef.current = null;
+      }
+      return;
+    }
+
+    if (!navigator.geolocation) {
+      setError("Is browser mein GPS support nahi hai.");
+      return;
+    }
+
+    watchIdRef.current = navigator.geolocation.watchPosition(
+      (pos) => {
+        fetchLiveIdentify(pos.coords.latitude, pos.coords.longitude);
+      },
+      () => {
+        setError("Location access nahi mila. Browser permissions check karo.");
+      },
+      { enableHighAccuracy: true, maximumAge: 5000, timeout: 10000 }
+    );
+
+    return () => {
+      if (watchIdRef.current !== null) {
+        navigator.geolocation.clearWatch(watchIdRef.current);
+        watchIdRef.current = null;
+      }
+    };
+  }, [cameraOn, demoMode]);
+
+  // Component chhodte waqt camera bhi band kar do, chahe user ne khud
+  // "Stop Camera" na dabaya ho.
+  useEffect(() => {
+    return () => {
+      const stream = videoRef.current?.srcObject;
+      if (stream) stream.getTracks().forEach(t => t.stop());
+    };
+  }, []);
 
   // Demo mode — manually landmark select karo
 async function handleDemoSelect(landmark) {
   setSelectedLandmark(landmark);
   setLoading(true);
   setResult(null);
+  setNearestDistance(null);
   try {
     const res = await axios.get(
       `http://localhost:8000/identify-by-gps?lat=${landmark.lat}&lng=${landmark.lng}`
     );
-    setResult(res.data);
+    setResult({ ...res.data, identified_by: "Demo" });
   } catch {
     setResult({ name: landmark.name, confidence: 99.0, identified_by: "Demo" });
   }
@@ -102,7 +184,7 @@ async function handleDemoSelect(landmark) {
           <div className="ar-overlay">
             <div className="ar-overlay-card">
               <div className="ar-overlay-badge">
-                {result.identified_by === "Demo GPS" ? "📍 Demo" : "📍 GPS"}
+                {result.identified_by === "Demo" ? "🎭 Demo" : "📍 GPS"}
               </div>
               <h2 className="ar-overlay-name">{result.name}</h2>
               {result.name_urdu && (
@@ -117,6 +199,17 @@ async function handleDemoSelect(landmark) {
               <div className="ar-overlay-confidence">
                 {result.confidence}% match
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Live mode par hai lekin koi landmark 30m ke andar nahi — walk closer hint */}
+        {!result && !demoMode && cameraOn && nearestDistance !== null && (
+          <div className="ar-overlay ar-overlay-hint">
+            <div className="ar-overlay-card">
+              <p className="ar-overlay-narrative">
+                Nearest monument {Math.round(nearestDistance)}m door hai. Thoda aur qareeb jao.
+              </p>
             </div>
           </div>
         )}
@@ -151,7 +244,7 @@ async function handleDemoSelect(landmark) {
 
         <button
           className={`ar-btn ${demoMode ? "ar-btn-active" : "ar-btn-secondary"}`}
-          onClick={() => { setDemoMode(!demoMode); setResult(null); }}
+          onClick={() => { setDemoMode(!demoMode); setResult(null); setNearestDistance(null); }}
         >
           🎭 {demoMode ? "Demo Mode ON" : "Demo Mode"}
         </button>

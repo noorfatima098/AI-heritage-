@@ -140,12 +140,19 @@ async def identify(file: UploadFile, lat: float = Form(None), lng: float = Form(
     tmp = os.path.join(tempfile.gettempdir(), file.filename)
     with open(tmp, "wb") as f:
         shutil.copyfileobj(file.file, f)
-    # GPS-ONLY check — CNN se pehle
-    # Agar user 30m ke andar hai kisi bhi landmark ke — seedha identify karo
+    # GPS-ONLY check — CNN se pehle, lekin SIRF un landmarks ke liye jinke
+    # paas CNN training data hi nahi hai (gps_only: true) — jaise Naulakha
+    # Pavilion, Sikh Wall, etc. CNN-trained landmarks (Sheesh Mahal, Moti
+    # Masjid, etc.) is check se bypass nahi hote, warna jo landmark GPS se
+    # "nearest" nikle wahi hamesha jeet jayega — chahe photo mein kuch aur
+    # ho. Fort ke andar bohot se landmarks 20-60m ke fasle par hain, is liye
+    # ye distinction zaroori hai taake image content still matter kare.
     if lat is not None and lng is not None:
         nearest = None
         min_dist = float('inf')
         for l in dataset["landmarks"]:
+            if not l.get("gps_only"):
+                continue
             dist = haversine_m(lat, lng, l["coordinates"]["lat"], l["coordinates"]["lng"])
             if dist < min_dist:
                 min_dist = dist
