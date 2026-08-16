@@ -8,6 +8,7 @@ import MonumentDetail from "./pages/MonumentDetail";
 import About from "./pages/About";
 import "./App.css";
 import AR from "./pages/AR";
+import './mobile.css';
 export default function App() {
   return (
     <BrowserRouter>

@@ -1,0 +1,98 @@
+@media (max-width: 768px) {
+
+  /* ── NAVBAR ── */
+  nav {
+    padding: 12px 16px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  nav div { gap: 16px !important; flex-wrap: wrap !important; }
+
+  /* ── HOME PAGE ── */
+  div[class*="hero"], div[style*="min-height: 88vh"] {
+    padding: 40px 16px !important;
+    min-height: 70vh !important;
+  }
+  h1[style*="clamp"] { font-size: 36px !important; }
+
+  /* Stats 4-col → 2-col */
+  div[style*="grid-template-columns: repeat(4"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 24px 16px !important;
+  }
+
+  /* Features 3-col → 1-col */
+  div[style*="repeat(auto-fit"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Buttons row */
+  div[style*="btnRow"], div[style*="gap: 16"] {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* ── IDENTIFY PAGE ── */
+  .identify-container {
+    padding: 16px !important;
+    max-width: 100% !important;
+  }
+  .identify-top {
+    flex-direction: column !important;
+  }
+  .identify-badge {
+    align-self: flex-start !important;
+    margin-top: 8px !important;
+  }
+  .identify-map { height: 220px !important; }
+
+  /* ── EXPLORE PAGE ── */
+  div[style*="grid-template-columns: 300px"] {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 280px 1fr !important;
+    height: auto !important;
+  }
+  div[style*="overflowY: auto"][style*="borderRight"] {
+    max-height: 280px !important;
+    order: 2 !important;
+  }
+  div[style*="mapWrap"], div[style*="position: relative"] {
+    height: 350px !important;
+    order: 1 !important;
+  }
+
+  /* ── AR PAGE ── */
+  .ar-viewport { min-height: 50vh !important; }
+  .ar-demo-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .ar-controls { flex-direction: column !important; }
+  .ar-btn { width: 100% !important; text-align: center !important; }
+  .ar-overlay-card { padding: 12px 14px !important; }
+  .ar-overlay-name { font-size: 18px !important; }
+  .ar-overlay-narrative { max-height: 60px !important; font-size: 12px !important; }
+
+  /* ── ABOUT PAGE ── */
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── GENERAL ── */
+  div[style*="padding: 48px"] { padding: 24px 16px !important; }
+  div[style*="padding:\"48px\""] { padding: 24px 16px !important; }
+  div[style*="maxWidth: 800"] { padding: 16px !important; }
+  div[style*="maxWidth: 780"] { padding: 16px !important; }
+  div[style*="maxWidth: 700"] { padding: 16px !important; }
+  h1[style*="fontSize: 36"] { font-size: 26px !important; }
+  h1[style*="fontSize: 34"] { font-size: 24px !important; }
+}
+
+@media (max-width: 480px) {
+  /* Extra small phones */
+  .ar-demo-grid { grid-template-columns: 1fr !important; }
+  div[style*="grid-template-columns: repeat(4"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .identify-badge-num { font-size: 22px !important; }
+}
