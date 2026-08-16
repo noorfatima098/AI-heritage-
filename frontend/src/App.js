@@ -9,6 +9,7 @@ import About from "./pages/About";
 import "./App.css";
 import AR from "./pages/AR";
 import './mobile.css';
+import Chatbot from "./components/Chatbot";
 export default function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/ar" element={<AR />} />
       </Routes>
+      <Chatbot />
     </BrowserRouter>
   );
 }

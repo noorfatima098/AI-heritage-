@@ -313,5 +313,85 @@ async def identify_by_gps(lat: float, lng: float):
         "reference_images": nearest["reference_images"],
         "distance_m": round(min_dist, 1)
     }
+from fastapi import Form
+from typing import Optional
+
+@app.post("/chat")
+async def chat(
+    message: str = Form(...),
+    lat: float = Form(None),
+    lng: float = Form(None),
+    landmark_id: str = Form(None)  # agar already identified hai
+):
+    # Step 1 — GPS se current landmark dhoondhna
+    context_landmark = None
+    if lat is not None and lng is not None:
+        nearest = None
+        min_dist = float('inf')
+        for l in dataset["landmarks"]:
+            dist = haversine_m(lat, lng, l["coordinates"]["lat"], l["coordinates"]["lng"])
+            if dist < min_dist:
+                min_dist = dist
+                nearest = l
+        if min_dist < 100:  # 100m radius for chat context
+            context_landmark = nearest
+
+    # Agar landmark_id directly diya
+    if landmark_id and not context_landmark:
+        context_landmark = next((l for l in dataset["landmarks"] if l["id"] == landmark_id), None)
+
+    # Step 2 — RAG se context nikalna
+    rag_context = ""
+    if context_landmark:
+        try:
+            resolved = resolve_landmark_id(context_landmark["id"])
+            col = chroma_client.get_or_create_collection("lahore_fort_landmarks")
+            result = col.get(where={"landmark_id": resolved})
+            if result["documents"]:
+                rag_context = "\n\n".join(result["documents"][:3])
+        except:
+            rag_context = context_landmark["description"]
+
+    # Step 3 — System prompt banao
+    location_info = ""
+    if context_landmark:
+        location_info = f"""
+The user is currently near: {context_landmark['name']} ({context_landmark['name_urdu']})
+Built by: {context_landmark['built_by']} | Period: {context_landmark['period']} | Year: {context_landmark['year_built']}
+Significance: {context_landmark['significance']}
+
+Research context:
+{rag_context}
+"""
+    else:
+        location_info = "The user's exact location within Lahore Fort is unknown."
+
+    system_prompt = f"""You are an expert AI heritage guide for the Walled City of Lahore and Lahore Fort.
+You answer visitor questions about the monuments, history, architecture, and culture of this UNESCO World Heritage Site.
+
+{location_info}
+
+Rules:
+- If asked "Where am I?" or "What is this place?", describe the nearest landmark based on the location info above.
+- Only use facts from the research context provided — never invent dates, names, or events.
+- Keep answers concise (2-4 sentences) and engaging for a heritage visitor.
+- If you don't know something, say so honestly.
+- You can answer in English or Urdu based on what the user writes in."""
+
+    response = groq_client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": message}
+        ],
+        max_tokens=300,
+        temperature=0.7
+    )
+
+    return {
+        "reply": response.choices[0].message.content,
+        "landmark": context_landmark["name"] if context_landmark else None,
+        "landmark_id": context_landmark["id"] if context_landmark else None
+    }    
 #cd "C:\Users\User\OneDrive\Desktop\python\AI heritage\AI-heritage-\backend"
 # uvicorn main:app --reload

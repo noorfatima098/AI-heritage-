@@ -51,8 +51,8 @@ export default function Home() {
       </section>
 
       <section ref={statRef} className={`home-stats reveal ${statVisible ? "in-view" : ""}`}>
-        <div className="home-stat"><span className="home-stat-num">11</span><span className="home-stat-label">Landmarks</span></div>
-        <div className="home-stat"><span className="home-stat-num">1631</span><span className="home-stat-label">Mirror Palace Built</span></div>
+        <div className="home-stat"><span className="home-stat-num">30+</span><span className="home-stat-label">Landmarks</span></div>
+        <div className="home-stat"><span className="home-stat-num">1000s</span><span className="home-stat-label">Century-Old Structures</span></div>
         <div className="home-stat"><span className="home-stat-num">3</span><span className="home-stat-label">Historical Eras</span></div>
         <div className="home-stat"><span className="home-stat-num">AI</span><span className="home-stat-label">Powered Recognition</span></div>
       </section>
