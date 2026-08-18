@@ -36,7 +36,7 @@ load_dotenv()  # reads GROQ_API_KEY from your .env file
 
 VECTORDB_PATH = "vectordb"
 COLLECTION_NAME = "lahore_fort_landmarks"
-GROQ_MODEL = "llama-3.3-70b-versatile"
+GROQ_MODEL = "openai/gpt-oss-120b"
 
 # Order sections should appear in the prompt, so the narrative flows logically
 SECTION_ORDER = [

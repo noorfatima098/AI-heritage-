@@ -234,7 +234,7 @@ async def identify(file: UploadFile, lat: float = Form(None), lng: float = Form(
 
         chat_completion = groq_client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
-            model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-120b",
         )
         narrative = chat_completion.choices[0].message.content
     # --- END NEW ---
@@ -379,7 +379,7 @@ Rules:
 - You can answer in English or Urdu based on what the user writes in."""
 
     response = groq_client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-120b",
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": message}
