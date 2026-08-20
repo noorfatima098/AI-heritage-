@@ -6,7 +6,8 @@ export default function Chatbot({ currentLandmarkId }) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
     { role: "bot", text: "Assalam o Alaikum! 🕌 I am your AI Heritage Guide for Lahore Fort. Ask me anything — or say 'Where am I?' to discover your location!" }
-  ]);
+  ])
+  const API = process.env.REACT_APP_API_URL || "http://localhost:8000";;
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [location, setLocation] = useState(null);
@@ -39,7 +40,7 @@ export default function Chatbot({ currentLandmarkId }) {
       }
       if (currentLandmarkId) form.append("landmark_id", currentLandmarkId);
 
-      const res = await axios.post("http://localhost:8000/chat", form);
+      const res = await axios.post(`${API}/chat`, form);
       setMessages(prev => [...prev, { role: "bot", text: res.data.reply, landmark: res.data.landmark }]);
     } catch {
       setMessages(prev => [...prev, { role: "bot", text: "Sorry, connection error. Please try again." }]);

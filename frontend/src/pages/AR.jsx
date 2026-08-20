@@ -48,7 +48,7 @@ export default function AR() {
   const [cameraOn, setCameraOn] = useState(false);
   const [error, setError] = useState(null);
   const [nearestDistance, setNearestDistance] = useState(null); // live "X m away" hint
-
+  const API = process.env.REACT_APP_API_URL || "http://localhost:8000";
   const watchIdRef = useRef(null);
   const lastFetchAtRef = useRef(0);
 
@@ -84,7 +84,7 @@ export default function AR() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:8000/identify-by-gps?lat=${lat}&lng=${lng}`
+        `${API}/identify-by-gps?lat=${lat}&lng=${lng}`
       );
       setNearestDistance(res.data.distance_m ?? null);
       if (res.data.recognised && res.data.distance_m <= NEARBY_THRESHOLD_M) {

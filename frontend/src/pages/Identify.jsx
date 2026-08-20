@@ -22,7 +22,7 @@ export default function Identify() {
   const [result, setResult]   = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState(null);
-
+  const API = process.env.REACT_APP_API_URL || "http://localhost:8000";
   function handleFile(e) {
     const file = e.target.files[0];
     if (!file) return;
@@ -45,7 +45,7 @@ export default function Identify() {
         form.append("lng", coords.lng);
       }
 
-      const res = await axios.post("http://localhost:8000/identify", form);
+      const res = await axios.post(`${API}/identify`, form);
       setResult(res.data);
     } catch {
       setError("Backend se connection nahi hua. FastAPI chal raha hai?");
@@ -70,7 +70,7 @@ export default function Identify() {
     try {
       const form = new FormData();
       form.append("file", image);
-      const res = await axios.post("http://localhost:8000/enhance", form, {
+      const res = await axios.post(`${API}/enhance`, form, {
         responseType: "blob"
       });
       const url = URL.createObjectURL(res.data);
