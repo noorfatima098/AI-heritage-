@@ -29,8 +29,6 @@
       "status": "Open to visitors",
       "gps_only": false,
       "reference_images": [
-        "sheesh-mahal_(7)_field.JPG",
-        "sheesh-mahal_(17)_field.JPG",
         "sheesh-mahal_(31)_field.JPG"
       ],
       "tags": [
@@ -90,7 +88,9 @@
       "significance": "Outstanding — largest Mughal tile-work panel in existence",
       "status": "Partially accessible — conservation ongoing",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "picture-wall_(23)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "jahangir",
@@ -177,7 +177,9 @@
       "significance": "High — central Mughal residential complex; recently restored",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "jahangir-quadrangle_(81)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "jahangir",
@@ -236,7 +238,9 @@
       "significance": "Medium — important administrative space of the Mughal court",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "arz-gah_(32)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "shah-jahan",
@@ -265,7 +269,9 @@
       "significance": "High — central to Shah Jahan's Fort expansion",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "shah-jahan-quadrangle_(53)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "shah-jahan",
@@ -321,7 +327,9 @@
       "significance": "Medium — early Mughal defensive architecture",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "lal-burj_(89)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "military",
@@ -475,7 +483,9 @@
       "significance": "High — Maharaja Ranjit Singh's personal court; finest Sikh period structure inside the Fort",
       "status": "Open to visitors",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "athdara_(1)_field.JPG"
+      ],
       "tags": [
         "sikh",
         "ranjit-singh",
@@ -506,7 +516,9 @@
       "significance": "High — rare Sikh-period residential structure; associated with a major historical figure",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "haveli-mai-jindan_(40)_field.JPG"
+      ],
       "tags": [
         "sikh",
         "rani-jindan",
@@ -534,7 +546,9 @@
       "significance": "Medium-High — example of imperial private mosque architecture",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "moti-masjid_(76)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "shah-jahan",
@@ -564,7 +578,9 @@
       "significance": "Medium — rare surviving educational structure within a Mughal fort",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "maktab-khana_(90)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "education",
@@ -575,7 +591,7 @@
     },
     {
       "id": "doulat-khana",
-      "name": "Daulat Khana Khas-o-Aam",
+      "name": "Doulat Khana Khas-o-Aam",
       "name_urdu": "دولت خانہ خاص و عام",
       "alternate_names": [
         "Doulat Khana",
@@ -589,11 +605,13 @@
         "lat": 31.588277103981138,
         "lng": 74.3153256406436
       },
-      "description": "The Daulat Khana Khas-o-Aam (House of Wealth, Private and Public) forms the northern arcade of Jahangir's Quadrangle. It was one of the most important residential and administrative buildings of Lahore Fort, serving as both private imperial apartments and semi-public reception space. The facade is a masterpiece of early Mughal architecture.",
+      "description": "The Doulat Khana Khas-o-Aam (House of Wealth, Private and Public) forms the northern arcade of Jahangir's Quadrangle. It was one of the most important residential and administrative buildings of Lahore Fort, serving as both private imperial apartments and semi-public reception space. The facade is a masterpiece of early Mughal architecture.",
       "significance": "High — central residential complex of Jahangir's Fort",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "doulat-khana_(71)_field"
+      ],
       "tags": [
         "mughal",
         "jahangir",
@@ -622,7 +640,9 @@
       "significance": "High — major Mughal administrative monument",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "diwan-i-amm_(63)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "shah-jahan",
@@ -651,7 +671,9 @@
       "significance": "High — royal ceremonial gate; connects to Hathi Peer Stairs",
       "status": "Open to visitors",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "shah-burj-gate_(1)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "akbar",
@@ -683,7 +705,9 @@
       "significance": "Medium — rare surviving Mughal military-industrial structure",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "barood-khana_(55)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "military",
@@ -712,7 +736,9 @@
       "significance": "High — primary Fort entrance, faces Badshahi Mosque",
       "status": "Open to visitors — main entry point",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "alamgiri-gate_(93)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "aurangzeb",
@@ -742,7 +768,9 @@
       "significance": "Medium — rare surviving service complex; being adaptively reused",
       "status": "Under conservation — partially accessible",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "royal-kitchen_(36)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "service-buildings",
@@ -804,7 +832,9 @@
       "significance": "Medium-High — oldest surviving gate in the Fort",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "akbari-gate_(24)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "akbar",
@@ -877,8 +907,8 @@
       ]
     },
     {
-      "id": "hathi-peer-stairs",
-      "name": "Hathi Peer Stairs",
+      "id": "hathi-paer-stairs",
+      "name": "Hathi Paer Stairs",
       "name_urdu": "ہاتھی پیر زینہ",
       "alternate_names": [
         "Elephant Stairs",
@@ -893,11 +923,13 @@
         "lat": 31.589470825257315,
         "lng": 74.31285242755285
       },
-      "description": "Hathi Peer Stairs are the broad, gently inclined ramps built within Lahore Fort to allow war elephants and mounted cavalry to access the upper levels. These wide sloping passages were engineered to bear the enormous weight of royal elephants used in ceremonial processions and military displays.",
+      "description": "Hathi Paer Stairs are the broad, gently inclined ramps built within Lahore Fort to allow war elephants and mounted cavalry to access the upper levels. These wide sloping passages were engineered to bear the enormous weight of royal elephants used in ceremonial processions and military displays.",
       "significance": "High — unique Mughal military engineering; elephant ramps are rare surviving examples",
       "status": "Open to visitors",
       "gps_only": false,
-      "reference_images": [],
+      "reference_images": [
+        "hathi-paer-stairs_(65)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "akbar",
