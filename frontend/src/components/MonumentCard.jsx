@@ -9,7 +9,7 @@ export default function MonumentCard({ landmark }) {
 
   return (
     <Link to={`/monument/${id}`} className="m-card card card-hover">
-      <MonumentArt id={id} name={name} src={landmark.image_url || landmark.image} rounded="0" topOnly aspect="4 / 3" />
+      <MonumentArt id={id} name={name} src={landmark.reference_images?.[0] ? `/images/landmarks/${landmark.reference_images[0]}` : undefined} rounded="0" topOnly aspect="4 / 3" />
       <div className="m-card-body">
         <div className="m-card-top">
           <h3 className="m-card-name">{name}</h3>
