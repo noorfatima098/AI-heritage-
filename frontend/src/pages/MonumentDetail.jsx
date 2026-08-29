@@ -10,7 +10,7 @@ export default function MonumentDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [landmark, setLandmark] = useState(null);
-  const [loading, setLoading]   = useState(true);
+  const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
@@ -56,18 +56,22 @@ export default function MonumentDetail() {
     name, name_urdu, description, short_description, historical_background,
     architecture, architecture_details, facts, interesting_facts, gallery, images,
     built_by, year_built, period, significance, coordinates, image_url, image,
+    reference_images,
   } = landmark;
 
   const body = description || short_description;
   const history = historical_background;
   const arch = architecture || architecture_details;
   const factList = facts || interesting_facts || [];
-  const galleryImages = gallery || images || [];
+  const heroSrc = image_url || image || (reference_images?.[0] ? `/images/landmarks/${reference_images[0]}` : undefined);
+  const galleryImages = (gallery || images || reference_images || []).map(src =>
+    src && !src.startsWith("http") && !src.startsWith("/") ? `/images/landmarks/${src}` : src
+  );
 
   return (
     <div className="page detail-page">
       <div className="detail-hero">
-        <MonumentArt id={id} name={name} src={image_url || image} rounded="0" aspect="16 / 7" />
+        <MonumentArt id={id} name={name} src={heroSrc} rounded="0" aspect="16 / 7" />
         <div className="detail-hero-overlay">
           <div className="container">
             <Link to="/explore" className="detail-back">← Back to Explore</Link>
