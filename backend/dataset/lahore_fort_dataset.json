@@ -65,7 +65,9 @@
       "significance": "High — unique bangaldar roof; finest pietra dura work in the Fort",
       "status": "Open to visitors",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "naulakha-pavilion_(1)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "shah-jahan",
@@ -133,7 +135,9 @@
       "significance": "Medium — elegant example of Mughal open pavilion architecture",
       "status": "Open to visitors",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "sehdari-pavilion_(1)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "shah-jahan",
@@ -162,7 +166,9 @@
       "significance": "High — innermost private imperial apartment; rare surviving sleeping chamber",
       "status": "Open to visitors",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "khwabgah-jahangir_(1)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "jahangir",
@@ -230,7 +236,9 @@
       "significance": "Medium — rare surviving Sikh period fortification within the Fort",
       "status": "Visible from perimeter",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "sikh-wall_(1)_field.JPG"
+      ],
       "tags": [
         "sikh",
         "ranjit-singh",
@@ -334,7 +342,9 @@
       "significance": "High — imperial private audience hall; restricted access during Mughal period",
       "status": "Open to visitors",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "diwan-i-khas_(1)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "shah-jahan",
@@ -401,7 +411,9 @@
       "significance": "Medium — paired defensive tower; complements Lal Burj",
       "status": "Partially accessible",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "kala-burj_(1)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "military",
@@ -431,7 +443,9 @@
       "significance": "Medium — rare surviving imperial seclusion space",
       "status": "Open to visitors",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "khilwat-khana_(1)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "shah-jahan",
@@ -462,7 +476,9 @@
       "significance": "High — rare surviving zenana garden within a Mughal fort",
       "status": "Open to visitors",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "pain-bagh_(1)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "shah-jahan",
@@ -493,7 +509,9 @@
       "significance": "High — finest surviving Mughal royal bath complex in Lahore Fort",
       "status": "Open to visitors",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "shahi-hammam_(1)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "shah-jahan",
@@ -1000,7 +1018,9 @@
       "significance": "Medium — distinctive octagonal defensive tower; overlooks Picture Wall",
       "status": "Partially accessible",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "musamman-burj_(1)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "shah-jahan",
@@ -1072,7 +1092,9 @@
       "significance": "Medium — Akbar's personal library; centre of Mughal scholarship",
       "status": "Partially accessible",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "akbari-mahal-kutab-khana_(1)_field.JPG"
+      ],
       "tags": [
         "mughal",
         "akbar",
@@ -1162,7 +1184,9 @@
       "significance": "Medium — Colonial period addition; represents the Fort's post-Mughal history",
       "status": "Open to visitors",
       "gps_only": true,
-      "reference_images": [],
+      "reference_images": [
+        "british-jail_(1)_field.JPG"
+      ],
       "tags": [
         "colonial",
         "british",

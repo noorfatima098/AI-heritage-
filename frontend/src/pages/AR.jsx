@@ -34,7 +34,7 @@ const DEMO_LANDMARKS = [
 ];
 
 const NEARBY_THRESHOLD_M = 50;
-const FETCH_THROTTLE_MS  = 4000;
+const FETCH_THROTTLE_MS = 4000;
 
 // ── ngrok warning page bypass ke liye axios instance ──────────────────────
 const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:8000";
@@ -44,18 +44,18 @@ const apiClient = axios.create({
 });
 
 export default function AR() {
-  const videoRef       = useRef(null);
-  const watchIdRef     = useRef(null);
+  const videoRef = useRef(null);
+  const watchIdRef = useRef(null);
   const lastFetchAtRef = useRef(0);
 
-  const [demoMode,         setDemoMode]         = useState(false);
+  const [demoMode, setDemoMode] = useState(false);
   const [selectedLandmark, setSelectedLandmark] = useState(null);
-  const [result,           setResult]           = useState(null);
-  const [loading,          setLoading]          = useState(false);
-  const [cameraOn,         setCameraOn]         = useState(false);
-  const [error,            setError]            = useState(null);
-  const [nearestDistance,  setNearestDistance]  = useState(null);
-  const [coords,           setCoords]           = useState(null);
+  const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [cameraOn, setCameraOn] = useState(false);
+  const [error, setError] = useState(null);
+  const [nearestDistance, setNearestDistance] = useState(null);
+  const [coords, setCoords] = useState(null);
 
   // ── Camera ────────────────────────────────────────────────────────────────
   async function startCamera() {
@@ -67,7 +67,7 @@ export default function AR() {
       setCameraOn(true);
       setError(null);
     } catch {
-      setError("Camera access nahi mila. Browser permissions check karo.");
+      setError("No Camera Access. Check browser permissions.");
     }
   }
 
@@ -111,7 +111,7 @@ export default function AR() {
     } catch (err) {
       console.error("[AR] identify-by-gps failed:", err.response?.data || err.message);
       setError(
-        `Backend se connect nahi ho raha (${err.response?.status || err.message}). API URL: ${API_BASE}`
+        `No backend connection  (${err.response?.status || err.message}). API URL: ${API_BASE}`
       );
     }
     setLoading(false);
@@ -128,7 +128,7 @@ export default function AR() {
     }
 
     if (!navigator.geolocation) {
-      setError("Is browser mein GPS support nahi hai.");
+      setError("No GPS support in this browser.");
       return;
     }
 
@@ -143,7 +143,7 @@ export default function AR() {
       },
       err => {
         console.error("[AR] geolocation error:", err);
-        setError("Location access nahi mila. Browser permissions check karo.");
+        setError("No location access. Check browser permissions.");
       },
       { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 }
     );
@@ -192,7 +192,7 @@ export default function AR() {
               </div>
               <h2 className="ar-overlay-name">{result.name}</h2>
               {result.name_urdu && <p className="ar-overlay-urdu">{result.name_urdu}</p>}
-              {result.period    && <p className="ar-overlay-meta">{result.built_by} · {result.year_built}</p>}
+              {result.period && <p className="ar-overlay-meta">{result.built_by} · {result.year_built}</p>}
               {result.narrative && <p className="ar-overlay-narrative">{result.narrative}</p>}
               <div className="ar-overlay-confidence">{result.confidence}% match</div>
             </div>
@@ -212,7 +212,7 @@ export default function AR() {
         {!cameraOn && (
           <div className="ar-camera-placeholder">
             <div className="ar-camera-icon">📷</div>
-            <p>Camera band hai</p>
+            <p>Your Camera is off.</p>
           </div>
         )}
 
@@ -228,7 +228,7 @@ export default function AR() {
         <div className="ar-debug" style={{ fontSize: "12px", opacity: 0.7, padding: "4px 8px" }}>
           {coords
             ? `lat: ${coords.lat.toFixed(6)}, lng: ${coords.lng.toFixed(6)} (±${Math.round(coords.accuracy)}m) | nearest: ${nearestDistance !== null ? Math.round(nearestDistance) + "m" : "—"}`
-            : "GPS lock ho raha hai..."}
+            : "GPS lock in process..."}
         </div>
       )}
 
